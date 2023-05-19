@@ -1,0 +1,13 @@
+body {
+  background-image: url('../images/LandingBG.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+.container {
+    /* height: 200px; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
