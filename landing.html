@@ -8,10 +8,27 @@
 </head>
 <body>
     <div class="container">
-        <!-- <button type="PlayGame"><img width="60" height="40" src="images/playgamebtn.png" alt="Submit"></button> -->
-        <input class="playgamebtn" type="image" src= "images/playgamebtn.png" height="80px" width="110px" alt="submit" />
+        <div class="title">
+            <h1>HuTaPlay</h1>
+        </div>  
+        <!--  -->
     </div>
-    
+    <div class="center">
+        <div>
+            <button onclick="redirectToToh()">Play Tower Of Hanoi</button>
+        </div>
+        <div>
+            <button onclick="redirectToRubic()">Play Rubick</button>
+        </div>
+    </div>
 
+    <script>
+        function redirectToToh() {
+            window.location.href = "ToH.html";
+        }
+        function redirectToRubic() {
+            window.location.href = "rubic.html";
+        }
+    </script>
 </body>
 </html>
