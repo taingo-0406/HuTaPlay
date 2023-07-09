@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V2</title>
+	<title>Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -33,7 +33,7 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100">
-				<form class="login100-form validate-form">
+				<form class="login100-form validate-form" method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
 					<span class="login100-form-title p-b-26">
 						Welcome
 					</span>
@@ -42,7 +42,7 @@
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
-						<input class="input100" type="text" name="email">
+						<input class="input100" type="text" name="email" required>
 						<span class="focus-input100" data-placeholder="Email"></span>
 					</div>
 
@@ -50,7 +50,7 @@
 						<span class="btn-show-pass">
 							<i class="zmdi zmdi-eye"></i>
 						</span>
-						<input class="input100" type="password" name="pass">
+						<input class="input100" type="password" name="password" required>
 						<span class="focus-input100" data-placeholder="Password"></span>
 					</div>
 
@@ -65,11 +65,11 @@
 
 					<div class="text-center p-t-115">
 						<span class="txt1">
-							Don’t have an account?
+							Have an account already?
 						</span>
 
-						<a class="txt2" href="#">
-							Sign Up
+						<a class="txt2" href="login.php">
+							Login
 						</a>
 					</div>
 				</form>
@@ -77,6 +77,49 @@
 		</div>
 	</div>
 	
+	<?php
+	// Include the database connection file
+	require_once 'database/database.php';
+
+	// Check if the form is submitted
+	if ($_SERVER["REQUEST_METHOD"] == "POST") {
+		$email = $_POST["email"];
+		$password = $_POST["password"];
+
+		// Validate email format
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			echo "<script>alert('Please enter a valid email address.');</script>";
+		} 
+		// Check if the email is already in use
+		else {
+			$sql = "SELECT * FROM users WHERE email = '$email'";
+			$result = $conn->query($sql);
+			
+			if ($result->num_rows > 0) {
+				echo "<script>alert('Email is already in use. Please choose a different email.');</script>";
+			} 
+			// Validate password length
+			elseif (strlen($password) < 6) {
+				echo "<script>alert('Password must be at least 6 characters long.');</script>";
+			} 
+			// If all validation passes, proceed with registration
+			else {
+				// Insert the user into the database
+				$sql = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
+			
+				if ($conn->query($sql) === TRUE) {
+					echo "<script>alert('Registration successful!');</script>";
+					header("Location: login.php");
+				} else {
+					echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
+				}
+			}
+		}
+	}
+
+	// Close the database connection
+	$conn->close();
+	?>
 
 	<div id="dropDownSelect1"></div>
 	

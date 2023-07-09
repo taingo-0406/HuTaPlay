@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +14,7 @@
     <div class="container">
         <div class="title">
             <h1>HuTaPlay</h1>
+            <h1>Welcome <?php echo $_SESSION['email']; ?></h1>
         </div>  
         <!--  -->
     </div>
