@@ -2,7 +2,7 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - The Cube</title>
+  <title>The Rubic game</title>
   <meta name="viewport" content="width=device-width,height=device-height,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0">
   <link rel="stylesheet" href="css/rubic.css">
 
@@ -76,7 +76,7 @@
   </div>
 
   <div class="ui__buttons">
-    <button class="btn btn--bl btn--stats">
+    <button class="btn btn--bl btn--stats" onclick="clickShowLeaderboard()">
       <icon trophy></icon>
     </button>
     <button class="btn btn--br btn--prefs">
@@ -97,6 +97,11 @@
 <!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/three.js/95/three.min.js'></script>
   <script  src="js/rubic-script.js"></script>
+  <script>
+    function clickShowLeaderboard() {
+      window.location.href = "ToH-leaderboard.html";
+    }
+  </script>
 
 </body>
 </html>

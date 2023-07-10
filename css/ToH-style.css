@@ -20,6 +20,13 @@ body {
     color: #515ca3;
     font-family: Lato;
   }
+  h3 {
+    text-align: center;
+    width: 100%;
+    position: relative;
+    color: #515ca3;
+    font-family: Lato;
+  }
   .moves {
     font-family: Lato;
     text-align: center;
@@ -122,6 +129,9 @@ body {
     font-family: Lato;
   }
   #restart {
+    margin: auto;
+  }
+  #result {
     margin: auto;
   }
   /*
