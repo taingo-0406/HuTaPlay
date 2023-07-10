@@ -61,7 +61,7 @@ $(document).ready(function() {
       }
       
       // if (solved()) $(".moves").text("Solved with " + moves + " moves!");
-      if (solved()) $('#popup-result').show();
+      if (solved()) $('#popup-result').removeClass("hidden");
 
     }
   

@@ -155,8 +155,12 @@ body {
   text-align: center;
   padding: 0 30px 30px;
   color: #333;
+}
+
+.hidden{
   visibility: hidden;
 }
+
 .popup-result h2{
   font-family: Lato;
   font-size: 38px;
