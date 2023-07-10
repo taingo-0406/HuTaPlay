@@ -8,7 +8,7 @@ $(document).ready(function() {
       towers[1][1].empty();
       towers[2][1].empty();
     }
-  
+
     function drawdiscs() {
       clear();
       for (var i = 0; i < 3; i++) {
@@ -27,11 +27,10 @@ $(document).ready(function() {
         }
       }
     }
-  
+    
     function init() {
       clear();
       towers = [[[], $(".line1")], [[], $(".line2")], [[], $(".line3")]];
-      discs = document.getElementById("box").value;
       moves = 0;
       hold = null;
       for (var i = discs; i > 0; i--) towers[0][0].push(i);
@@ -93,10 +92,26 @@ $(document).ready(function() {
     $(".t").click(function() {
       handle($(this).attr("value"));
     });
-  
-    $("#restart").click(function() {
-      var discs = document.getElementById("box").value;
-      init();
+        
+    $.ajax({
+      url: "../hutaplay/database/check_current_discs.php",
+      method: "POST",
+      dataType: 'json',
+      success: function(response) {
+        if (response != null) {
+          console.log(response);
+          discs = response.toh_disk;
+          console.log(discs);
+          $(".current-stage").text(response.current_stage);
+          init();
+        } else {
+          console.log("Error checking current stage.");
+          window.location.href = "landing.php";
+        }
+      },
+      error: function() {
+          console.log("Error occurred during AJAX request.");
+          window.location.href = "landing.php";
+      }
     });
-    init();
   });

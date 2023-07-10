@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login</title>
+	<title>Register</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -58,7 +58,7 @@
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn">
-								Login
+								Register
 							</button>
 						</div>
 					</div>
@@ -105,7 +105,7 @@
 			// If all validation passes, proceed with registration
 			else {
 				// Insert the user into the database
-				$sql = "INSERT INTO users (email, password) VALUES ('$email', '$password')";
+				$sql = "INSERT INTO users (email, password, points, current_stage) VALUES ('$email', '$password', 0, 1)";
 			
 				if ($conn->query($sql) === TRUE) {
 					echo "<script>alert('Registration successful!');</script>";

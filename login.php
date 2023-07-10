@@ -94,7 +94,9 @@
 			// Login successful, create session
 			session_start();
 			$_SESSION['email'] = $email;
-	
+			$user = $result->fetch_assoc();
+        	$currentStage = $user['current_stage'];
+			$_SESSION['current_stage'] = $currentStage;
 			header("Location: landing.php");
 	
 			// Stop further execution of the script
