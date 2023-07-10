@@ -143,3 +143,32 @@ body {
     margin: auto;
     opacity: 1;
   }
+.popup-result{
+  font-family: Lato;
+  width: 400px;
+  background: #fff;
+  border-radius: 6px;
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  text-align: center;
+  padding: 0 30px 30px;
+  color: #333;
+  visibility: hidden;
+}
+.popup-result h2{
+  font-family: Lato;
+  font-size: 38px;
+  font-weight: 500;
+  margin: 30px 0 10px;
+}
+.popup-result button{
+  width: 33.3%;
+  padding: 10px 0;
+  background: none;
+  border: none;
+  font-size: 35px;
+  cursor: pointer;
+  float: left;
+}

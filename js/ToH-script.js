@@ -59,7 +59,10 @@ $(document).ready(function() {
         }
         hold = null;
       }
-      if (solved()) $(".moves").text("Solved with " + moves + " moves!");
+      
+      // if (solved()) $(".moves").text("Solved with " + moves + " moves!");
+      if (solved()) $('#popup-result').show();
+
     }
   
     function moveDisc(a, b) {
