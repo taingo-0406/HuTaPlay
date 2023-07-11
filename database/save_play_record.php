@@ -8,22 +8,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['email'])) {
     $points = $_POST["points"];
     $stage_id = $_POST["stage_id"];
     $user_email = $_SESSION['email'];
-    
-    // Query the database to check user ID based on email
-    $stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
-    $stmt->bind_param("s", $user_email);
-    $stmt->execute();
-    $stmt->bind_result($user_id);
+    $user_id = $_SESSION['user_id'];
 
-    if (!$stmt->fetch()) {
-        echo "User not found";
-    }
-    // Insert the play record into the database
-    $sql = "INSERT INTO play_record (user_id, points, stage_id) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iii", $user_id, $points, $stage_id);
-    $stmt->execute();
-    $stmt->close();
+    // Insert the new record into the play table
+    $query = "INSERT INTO play_record (user_id, points, stage_id) VALUES ('$user_id', '$points', '$stage_id')";
+    mysqli_query($conn, $query);
+
+    // Update the current_stage of the user
+    $query = "UPDATE users SET current_stage = current_stage + 1, points = points + $points WHERE id = '$user_id'";
+    mysqli_query($conn, $query);
 
     // Return a success response
     echo "Play record saved successfully";

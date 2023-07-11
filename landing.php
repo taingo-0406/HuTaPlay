@@ -29,6 +29,16 @@ if (!isset($_SESSION['email'])) {
         <div>
             <button onclick="redirectToRubic()">Play Rubick</button>
         </div>
+        <?php
+        if(isset($_POST['logout'])) {
+            session_destroy();
+            header('Location: login.php');
+        }
+        ?>
+
+        <form method="post">
+            <input type="submit" name="logout" value="Logout">
+        </form>
     </div>
 
     <script>
