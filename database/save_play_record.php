@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['email'])) {
 
     $_SESSION['current_stage'] = $_SESSION['current_stage'] + 1;
     // Return a success response
-    echo "Play record saved successfully";
+    echo $points;
 }
 
 // Close the database connection

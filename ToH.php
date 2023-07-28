@@ -1,9 +1,4 @@
-<?php
-  if ($_SESSION['current_stage'] % 2 == 0) {
-    header("Location: rubic.html");
-    exit();
-  }
-?>
+
 
 <!DOCTYPE html>
 <html>
@@ -47,19 +42,15 @@
     </br>
     </br>
 
-    <div id="result">
-      <span id="boot-icon" onclick="clickLeaderBoardToH()" class="bi bi-trophy-fill" style="font-size: 1cm; color: rgb(128, 128, 128); opacity: 0.5;"></span>
-    </div>
-
     <div class="popup-result hidden" id="popup-result">
       <h2>CONGRATULATION!</h2>
-      <p>You have solved this level in ...</p>
-      <p>Here is your reward!</p>
+      <p>You have solved this level in <i class = "totalmoves"></i></p>
+      <p class = "pointtext"></p>
       <!--De cai point vao day-->
       <br>
-      <button class="bi bi-house"></button>
-      <button class="bi bi-arrow-right-circle-fill"></button>
-      <button class="bi bi-trophy-fill"></button>
+      <button class="bi bi-house" onclick = "redirectLandingPage()"></button>
+      <button class="bi bi-arrow-right-circle-fill" onclick = "redirectRubicPage()"></button>
+      <button class="bi bi-trophy-fill" onclick = "redirectLeaderBoard()"></button>
     </div>
 <!-- </br>
     <div id="solve">
@@ -69,7 +60,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/ToH-script.js"></script>
     <script>
-      function clickLeaderBoardToH() {
+      function redirectLandingPage() {
+        window.location.href = "landing.php"
+      }
+      function redirectRubicPage() {
+        window.location.href = "rubic.html"
+      }
+      function redirectLeaderBoard() {
         window.location.href="ToH-leaderboard.html"
       }
     </script>

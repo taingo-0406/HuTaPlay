@@ -68,8 +68,11 @@ $(document).ready(function () {
     // if (solved()) $(".moves").text("Solved with " + moves + " moves!");
     if (solved()) {
       // console.log(moves);
-      $("#popup-result").removeClass("hidden");
       saveRecordToDatabase();
+
+      $(".totalmoves").text(moves + " moves!");
+      $("#popup-result").removeClass("hidden");
+      
     }
   }
 
@@ -98,8 +101,9 @@ $(document).ready(function () {
       },
       success: function (response) {
         // Handle the success response
-        console.log("Play record saved successfully.");
+        console.log(response);
         console.log(moves);
+        $(".pointtext").text("You have received " + response + " points!");
       },
       error: function () {
         console.log("Error occurred during AJAX request.");
