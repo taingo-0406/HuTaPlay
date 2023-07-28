@@ -1,4 +1,4 @@
-document.ready(function () {
+$(document).ready(function () {
   var towers = [
       [[], $(".line1")],
       [[], $(".line2")],

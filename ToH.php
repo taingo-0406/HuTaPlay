@@ -1,6 +1,6 @@
 <?php
   if ($_SESSION['current_stage'] % 2 == 0) {
-    header("Location: landing.php");
+    header("Location: rubic.html");
     exit();
   }
 ?>
