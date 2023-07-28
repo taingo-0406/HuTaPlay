@@ -1,3 +1,10 @@
+<?php
+  if ($_SESSION['current_stage'] % 2 == 0) {
+    header("Location: landing.php");
+    exit();
+  }
+?>
+
 <!DOCTYPE html>
 <html>
 

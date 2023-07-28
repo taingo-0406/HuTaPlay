@@ -1,4 +1,4 @@
-$(document).ready(function () {
+document.ready(function () {
   var towers = [
       [[], $(".line1")],
       [[], $(".line2")],
@@ -67,6 +67,7 @@ $(document).ready(function () {
 
     // if (solved()) $(".moves").text("Solved with " + moves + " moves!");
     if (solved()) {
+      // console.log(moves);
       $("#popup-result").removeClass("hidden");
       saveRecordToDatabase();
     }
@@ -92,12 +93,13 @@ $(document).ready(function () {
       url: "../hutaplay/database/save_play_record.php",
       method: "POST",
       data: {
-        points: 100,
+        points: moves * 5,
         stage_id: current_stage,
       },
       success: function (response) {
         // Handle the success response
         console.log("Play record saved successfully.");
+        console.log(moves);
       },
       error: function () {
         console.log("Error occurred during AJAX request.");
