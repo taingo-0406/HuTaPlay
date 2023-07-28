@@ -20,7 +20,9 @@ if (!isset($_SESSION['email'])) {
     <div class="container">
         <div class="title">
             <h1>HuTaPlay</h1>
-            <h1>Welcome <?php echo $_SESSION['email']; ?></h1>
+            <h1>Welcome
+                <?php echo $_SESSION['email']; ?>
+            </h1>
         </div>
         <!--  -->
     </div>
@@ -33,6 +35,7 @@ if (!isset($_SESSION['email'])) {
             session_destroy();
             header('Location: login.php');
         }
+        $current_stage = (isset($_SESSION['current_stage'])) ? $_SESSION['current_stage'] : '1';
         ?>
 
         <form method="post">
@@ -40,10 +43,10 @@ if (!isset($_SESSION['email'])) {
         </form>
     </div>
 
-    <script>
+    <script type="text/javascript">
         function redirectPlay() {
-            let current_stage = <?php echo $_SESSION['current_stage']; ?>
-            if (current_stage % 2 == 1) {
+            let current_stage = parseInt('<?php echo $current_stage; ?>');
+            if (current_stage % 2 === 1) {
                 window.location.href = "ToH.php";
             } else {
                 window.location.href = "rubic.html";
