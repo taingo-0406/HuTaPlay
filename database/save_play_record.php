@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['email'])) {
     $query = "UPDATE users SET current_stage = current_stage + 1, points = points + $points WHERE id = '$user_id'";
     mysqli_query($conn, $query);
 
-    $_SESSION['current_stage'] = $_SESSION['current_stage'] + 1;
+    $_SESSION['current_stage'] = $current_stage + 1;
     // Return a success response
     echo $points;
 }
