@@ -4,6 +4,7 @@
 	<title>Login V2</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -96,6 +97,7 @@
 			$_SESSION['email'] = $email;
 			$user = $result->fetch_assoc();
 			$_SESSION['user_id'] = $user['id'];
+			$_SESSION['fullname'] = $user['full_name'];
 			$_SESSION['current_stage'] = $user['current_stage'];
 			header("Location: landing.php");
 	

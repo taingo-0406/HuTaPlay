@@ -13,7 +13,8 @@ if (!isset($_SESSION['email'])) {
   <meta charset="UTF-8" />
   <title>Account Settings UI Design</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport" />
-  <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
   <link rel="stylesheet" type="text/css" href="css/landing_example.css" />
 </head>
@@ -29,9 +30,17 @@ if (!isset($_SESSION['email'])) {
 
       <div class="dropdown">
         <h4 class="text-center">Welcome
-          <?php echo $_SESSION['email']; ?>
+          <?php echo $_SESSION['fullname']; ?>
           <div class="dropdown_item">
-            <a>Logout</a>
+            <?php
+            if (isset($_POST['logout'])) {
+              session_destroy();
+              header('Location: login.php');
+            }
+            ?>
+            <form method="post">
+              <input type="submit" name="logout" value="Logout">
+            </form>
           </div>
       </div>
       </h4>
@@ -53,13 +62,13 @@ if (!isset($_SESSION['email'])) {
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    $(document).ready(function() {
+    $(document).ready(function () {
       //send ajax to check current points of user 
       function checkPoints() {
         $.ajax({
           url: 'database/check_current_points.php',
           type: 'GET',
-          success: function(data) {
+          success: function (data) {
             // Update the text on the page
             $('.current-points').text('Current points: ' + data);
           }

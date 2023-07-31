@@ -4,6 +4,7 @@
 	<title>Register</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://code.jquery.com/jquery-3.7.0.js" integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 <!--===============================================================================================-->	
 	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
@@ -40,6 +41,11 @@
 					<span class="login100-form-title p-b-48">
 						<i class="zmdi zmdi-font"></i>
 					</span>
+
+					<div class="wrap-input100">
+						<input class="input100" type="text" name="fullname" required>
+						<span class="focus-input100" data-placeholder="Full name"></span>
+					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is: a@b.c">
 						<input class="input100" type="text" name="email" required>
@@ -85,6 +91,7 @@
 	if ($_SERVER["REQUEST_METHOD"] == "POST") {
 		$email = $_POST["email"];
 		$password = $_POST["password"];
+		$fullname = $_POST["fullname"];
 
 		// Validate email format
 		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -105,7 +112,7 @@
 			// If all validation passes, proceed with registration
 			else {
 				// Insert the user into the database
-				$sql = "INSERT INTO users (email, password, points, current_stage) VALUES ('$email', '$password', 0, 1)";
+				$sql = "INSERT INTO users (email, full_name, password, points, current_stage) VALUES ('$email', '$fullname', '$password', 0, 1)";
 			
 				if ($conn->query($sql) === TRUE) {
 					echo "<script>alert('Registration successful!');</script>";
