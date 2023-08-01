@@ -3713,7 +3713,7 @@ const animationEngine = ( () => {
         ui: document.querySelector( '.ui' ),
         game: document.querySelector( '.ui__game' ),
         back: document.querySelector( '.ui__background' ),
-        prefs: document.querySelector( '.ui__prefs' ),
+        // prefs: document.querySelector( '.ui__prefs' ),
         theme: document.querySelector( '.ui__theme' ),
         stats: document.querySelector( '.ui__stats' ),
         texts: {
