@@ -21,7 +21,7 @@ const items = [
   { name: "chameleon", image: "images/memory_game/chameleon.png", size: "5px" },
   { name: "piranha", image: "images/memory_game/piranha.png", size: "5px" },
   { name: "anaconda", image: "images/memory_game/anaconda.png", size: "5px" },
-  { name: "sloth", image: "images/memory_game/sloth.png", size: "5px"},
+  { name: "sloth", image: "images/memory_game/sloth.png", size: "5px" },
   { name: "cockatoo", image: "images/memory_game/cockatoo.png", size: "5px" },
   { name: "toucan", image: "images/memory_game/toucan.png", size: "5px" },
 ];
@@ -98,7 +98,9 @@ const matrixGenerator = (cardValues, size = 4) => {
   cards = document.querySelectorAll(".card-container");
   cards.forEach((card) => {
     card.addEventListener("click", () => {
-      setTimeout(() => {card.disabled = false;}, 2000);
+      setTimeout(() => {
+        card.disabled = false;
+      }, 2000);
       //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
       if (!card.classList.contains("matched")) {
         //flip the cliked card
@@ -126,7 +128,8 @@ const matrixGenerator = (cardValues, size = 4) => {
             //check if winCount ==half of cardValues
             if (winCount == Math.floor(cardValues.length / 2)) {
               result.innerHTML = `<h2>You Won</h2>
-            <h4>Moves: ${movesCount}</h4>`;
+            <h4>Moves: ${movesCount}</h4>
+            <h4>Scores: gan cai score vao day nha</h4>`;
               stopGame();
             }
           } else {
