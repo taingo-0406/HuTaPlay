@@ -29,8 +29,8 @@ h6 {
 }
 
 .img-circle img {
-  height: 100px;
-  width: 100px;
+  height: 20px;
+  width: 20px;
   border-radius: 100%;
   border: 5px solid #fff;
 }
@@ -110,7 +110,7 @@ span.circle {
   display: block;
 }
 
-.popup-result{
+.popup-result {
   font-family: Lato;
   width: 400px;
   background: #fff;
@@ -124,11 +124,11 @@ span.circle {
   color: #333;
 }
 
-.hidden{
+.hidden {
   visibility: hidden;
 }
 
-.popup-result h2{
+.popup-result h2 {
   font-family: Lato;
   font-size: 38px;
   font-weight: 500;
@@ -150,3 +150,8 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 
+.pointandchart button {
+  padding: 0;
+  border: none;
+  background: none;
+}
