@@ -29,10 +29,10 @@ h6 {
 }
 
 .img-circle img {
-  height: 20px;
-  width: 20px;
-  border-radius: 100%;
-  border: 5px solid #fff;
+  height: 40px;
+  width: 40px;
+  /* border-radius: 100%;
+  border: 5px solid #fff; */
 }
 
 * {
