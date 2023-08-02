@@ -64,7 +64,7 @@
         window.location.href = "landing.php"
       }
       function redirectRubicPage() {
-        window.location.href = "rubic.html"
+        window.location.href = "memory_game.html"
       }
       function redirectLeaderBoard() {
         window.location.href="ToH-leaderboard.html"

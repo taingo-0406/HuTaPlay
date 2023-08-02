@@ -3115,6 +3115,8 @@ const animationEngine = ( () => {
       localStorage.setItem( 'theCube_playing', gameInProgress );
       localStorage.setItem( 'theCube_savedState', JSON.stringify( gameCubeData ) );
       localStorage.setItem( 'theCube_time', gameTime );
+      localStorage.setItem( 'gamer_time', gameTime);
+      console.log(gameTime);
   
     }
   
@@ -4081,3 +4083,5 @@ const animationEngine = ( () => {
   
   window.version = '0.99.2';
   window.game = new Game();
+
+  console.log(localStorage.getItem('gamer_time'));

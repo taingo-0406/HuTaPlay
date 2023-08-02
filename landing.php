@@ -16,7 +16,7 @@ if (!isset($_SESSION['email'])) {
   <link rel="stylesheet" type="text/css"
     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
-  <link rel="stylesheet" type="text/css" href="css/landing_example.css" />
+  <link rel="stylesheet" type="text/css" href="css/landing.css" />
 </head>
 
 <body>
@@ -58,6 +58,7 @@ if (!isset($_SESSION['email'])) {
       <a href="access_game.php"> <span class="circle current">2</span> </a>
       <span class="circle locked">🔒</span> -->
     </div>
+    <a href="memory_game.html">new game</a>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
