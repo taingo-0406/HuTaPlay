@@ -12,18 +12,18 @@ let secondCard = false;
 
 //Items array
 const items = [
-  { name: "bee", image: "bee.png" },
-  { name: "crocodile", image: "crocodile.png" },
-  { name: "macaw", image: "macaw.png" },
-  { name: "gorilla", image: "gorilla.png" },
-  { name: "tiger", image: "tiger.png" },
-  { name: "monkey", image: "monkey.png" },
-  { name: "chameleon", image: "chameleon.png" },
-  { name: "piranha", image: "piranha.png" },
-  { name: "anaconda", image: "anaconda.png" },
-  { name: "sloth", image: "sloth.png" },
-  { name: "cockatoo", image: "cockatoo.png" },
-  { name: "toucan", image: "toucan.png" },
+  { name: "bee", image: "images/memory_game/bee.png", weigh: "5px" },
+  { name: "crocodile", image: "images/memory_game/crocodile.png", size: "5px" },
+  { name: "macaw", image: "images/memory_game/macaw.png", size: "5px" },
+  { name: "gorilla", image: "images/memory_game/gorilla.png", size: "5px" },
+  { name: "tiger", image: "images/memory_game/tiger.png", size: "5px" },
+  { name: "monkey", image: "images/memory_game/monkey.png", size: "5px" },
+  { name: "chameleon", image: "images/memory_game/chameleon.png", size: "5px" },
+  { name: "piranha", image: "images/memory_game/piranha.png", size: "5px" },
+  { name: "anaconda", image: "images/memory_game/anaconda.png", size: "5px" },
+  { name: "sloth", image: "images/memory_game/sloth.png", size: "5px"},
+  { name: "cockatoo", image: "images/memory_game/cockatoo.png", size: "5px" },
+  { name: "toucan", image: "images/memory_game/toucan.png", size: "5px" },
 ];
 
 //Initial Time
@@ -98,6 +98,7 @@ const matrixGenerator = (cardValues, size = 4) => {
   cards = document.querySelectorAll(".card-container");
   cards.forEach((card) => {
     card.addEventListener("click", () => {
+      setTimeout(() => {card.disabled = false;}, 2000);
       //If selected card is not matched yet then only run (i.e already matched card when clicked would be ignored)
       if (!card.classList.contains("matched")) {
         //flip the cliked card
