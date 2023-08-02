@@ -145,7 +145,7 @@
 						})
 						</script>";
 					} else {
-						echo "<script>alert('Error: " . $sql . "<br>" . $conn->error . "');</script>";
+						echo "<script>alert('Error');</script>";
 					}
 				}
 			}
