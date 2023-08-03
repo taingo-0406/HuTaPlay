@@ -20,11 +20,13 @@ $(document).ready(function () {
                     current_stage = response.current_stage;
                     console.log("Current stage: " + current_stage);
                     //append the current stage to the page
+                    $('.stages').append('<span class="circle current"><</span> ');
                     for (let i = 1; i < current_stage; i++) {
                         $('.stages').append('<span class="circle passed">' + i + '</span>');
                     }
                     $('.stages').append('<a href="access_game.php"> <span class="circle current">' + current_stage + '</span> </a>');
                     $('.stages').append('<span class="circle locked"><i class="fa fa-lock" aria-hidden="true"></i></span>');
+                    $('.stages').append('<span class="circle current">></span> ');
                 } else {
                     console.log("Error checking current stage.");
                     window.location.href = "landing.php";

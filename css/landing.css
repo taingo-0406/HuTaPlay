@@ -57,17 +57,14 @@ h6 {
   top: 85%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 150px;
+  /* padding: 150px; */
 }
 
 .imageicon {
   padding: 15px;
 }
 
-/* .stages > span {
-	width: 25%;
 
-} */
 
 span.circle {
   background: #e3e3e3;
