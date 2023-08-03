@@ -9,12 +9,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.Test;
 
 public class TC02 extends TestBase {
-
-    LoginPage loginPage = new LoginPage();
-    RegisterPage registerPage = new RegisterPage();
-
     @Test(dataProvider = "dataLogin")
     public void TC01(Object[] dataCsv) throws InterruptedException {
+
+        LoginPage loginPage = new LoginPage();
+        RegisterPage registerPage = new RegisterPage();
 
         JavascriptExecutor js = (JavascriptExecutor) Constant.DRIVER;
         js.executeScript("arguments[0].scrollIntoView()", loginPage.getLnkRegisterTab());

@@ -29,13 +29,13 @@ public class TestBase {
         Log.info("Navigate to HuTaPlay Website");
     }
 
-//    @AfterMethod
-//    public void tearDown() {
-//        WebDriverUtils.quitBrowser();
-//
-//        Log.info("Exit HuTaPlay Website");
-//
-//    }
+    @AfterMethod
+    public void tearDown() {
+        WebDriverUtils.quitBrowser();
+
+        Log.info("Exit HuTaPlay Website");
+
+    }
 
     @DataProvider
     public Iterator<Object[]> dataLogin() throws IOException {
