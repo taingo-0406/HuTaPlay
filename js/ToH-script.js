@@ -76,6 +76,33 @@ $(document).ready(function () {
     }
   }
 
+  function checkCurrentStage() {
+    $.ajax({
+      url: "../hutaplay/database/check_current_discs.php",
+      method: "POST",
+      dataType: "json",
+      success: function (response) {
+        if (response != null) {
+          current_stage = response.current_stage;
+          discs = response.toh_disk;
+          memory_size = response.memory_size;
+
+          if (discs != null && current_stage != null) {
+            $(".current-stage").text(current_stage);
+            init();
+          }
+        } else {
+          console.log("Error checking current stage.");
+          // window.location.href = "landing.php";
+        }
+      },
+      error: function () {
+        console.log("Error occurred during AJAX request.");
+        // window.location.href = "landing.php";
+      },
+    });
+  }
+
   function moveDisc(a, b) {
     var from = towers[a][0];
     var to = towers[b][0];
@@ -106,9 +133,4 @@ $(document).ready(function () {
   });
 
   checkCurrentStage();
-
-  if (discs != null && current_stage != null) {
-    $(".current-stage").text(current_stage);
-    init();
-  }
 });
