@@ -13,6 +13,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_SESSION['email'])) {
     $optimal_point = $row['optimal_point'];
     // Retrieve the data from the AJAX request;
     $points = $optimal_point - $_POST["points"];
+    if($points < 0){
+        $points = 0;
+    }
     $stage_id = $_POST["stage_id"];
     $user_email = $_SESSION['email'];
     $user_id = $_SESSION['user_id'];

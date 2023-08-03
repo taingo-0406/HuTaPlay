@@ -1,9 +1,9 @@
 $(document).ready(function () {
   var towers = [
-      [[], $(".line1")],
-      [[], $(".line2")],
-      [[], $(".line3")],
-    ],
+    [[], $(".line1")],
+    [[], $(".line2")],
+    [[], $(".line3")],
+  ],
     moves = 0,
     discs = null,
     current_stage = null,
@@ -22,10 +22,10 @@ $(document).ready(function () {
           towers[i][1].append(
             $(
               "<li id='disc" +
-                towers[i][0][j] +
-                "' value='" +
-                towers[i][0][j] +
-                "'></li>"
+              towers[i][0][j] +
+              "' value='" +
+              towers[i][0][j] +
+              "'></li>"
             )
           );
         }
@@ -68,11 +68,11 @@ $(document).ready(function () {
     // if (solved()) $(".moves").text("Solved with " + moves + " moves!");
     if (solved()) {
       // console.log(moves);
-      saveRecordToDatabase();
+      saveRecordToDatabase(moves, current_stage);
 
       $(".totalmoves").text(moves + " moves!");
       $("#popup-result").removeClass("hidden");
-      
+
     }
   }
 
@@ -91,26 +91,6 @@ $(document).ready(function () {
     }
   }
 
-  function saveRecordToDatabase() {
-    $.ajax({
-      url: "../hutaplay/database/save_play_record.php",
-      method: "POST",
-      data: {
-        points: moves * 5,
-        stage_id: current_stage,
-      },
-      success: function (response) {
-        // Handle the success response
-        console.log(response);
-        console.log(moves);
-        $(".pointtext").text("You have received " + response + " points!");
-      },
-      error: function () {
-        console.log("Error occurred during AJAX request.");
-      },
-    });
-  }
-
   function solved() {
     if (
       jQuery.isEmptyObject(towers[0][0]) &&
@@ -125,28 +105,10 @@ $(document).ready(function () {
     handle($(this).attr("value"));
   });
 
-  function startGame() {
-    $.ajax({
-      url: "../hutaplay/database/check_current_discs.php",
-      method: "POST",
-      dataType: "json",
-      success: function (response) {
-        if (response != null) {
-          discs = response.toh_disk;
-          current_stage = response.current_stage;
-          $(".current-stage").text(current_stage);
-          init();
-        } else {
-          console.log("Error checking current stage.");
-          window.location.href = "landing.php";
-        }
-      },
-      error: function () {
-        console.log("Error occurred during AJAX request.");
-        window.location.href = "landing.php";
-      },
-    });
-  }
+  checkCurrentStage();
 
-  startGame();
+  if (discs != null && current_stage != null) {
+    $(".current-stage").text(current_stage);
+    init();
+  }
 });

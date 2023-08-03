@@ -58,13 +58,14 @@
     </div>
 -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/call_database.js"></script>
     <script src="js/ToH-script.js"></script>
     <script>
       function redirectLandingPage() {
         window.location.href = "landing.php"
       }
       function redirectRubicPage() {
-        window.location.href = "memory_game.html"
+        window.location.href = "memory_game.php"
       }
       function redirectLeaderBoard() {
         window.location.href="ToH-leaderboard.html"

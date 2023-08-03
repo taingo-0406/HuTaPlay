@@ -25,6 +25,8 @@
       <button id="start">Start Game</button>
     </div>
     <!-- Script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/call_database.js"></script>
     <script src="js/memory_game.js"></script>
   </body>
 </html>

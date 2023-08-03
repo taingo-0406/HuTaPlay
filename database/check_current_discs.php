@@ -7,21 +7,24 @@ if (isset($_SESSION['email'])) {
     $currentStage = $_SESSION['current_stage'];
 
     require_once 'database.php';
-
     // Prepare and execute the query
-    $stmt = $conn->prepare("SELECT toh_disk FROM stage WHERE id = ?");
+    $stmt = $conn->prepare("SELECT toh_disk, memory_size FROM stage WHERE id = ?");
     $stmt->bind_param("i", $currentStage);
     $stmt->execute();
-    $stmt->bind_result($tohDisk);
-    $stmt->fetch();
+    $result = $stmt->get_result();
+    while ($row = $result->fetch_assoc()) {
+        $memory_size = $row['memory_size'];
+        $tohDisk = $row['toh_disk'];
+    }
 
     // Close the statement and database connection
     $stmt->close();
     $conn->close();
 
-    $stageInfo = array (
+    $stageInfo = array(
+        'current_stage' => $currentStage,
         'toh_disk' => $tohDisk,
-        'current_stage' => $currentStage
+        'memory_size' => $memory_size,
     );
     // Convert the array to JSON
     $jsonData = json_encode($stageInfo);
