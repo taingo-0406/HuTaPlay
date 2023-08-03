@@ -35,6 +35,24 @@ $(document).ready(function () {
             },
         });
     }
+    function checkAvailableGifts() {
+        $.ajax({
+            url: '../hutaplay/database/check_available_gifts.php',
+            type: 'GET',
+            success: function (data) {
+                gifts = JSON.parse(data);
+                console.log(gifts);
+                for (i = 0; i < gifts.length; i++) {
+                    var row = $('<tr></tr>');
+                    row.append('<td>' + gifts[i].name + '</td>');
+                    row.append('<td>' + gifts[i].cost + '</td>');
+                    row.append('<td><button>Redeem</button></td>');
+                    $('#gifts').append(row);
+                }
+            }
+        });
+    }
     checkPoints();
     checkCurrentStage();
+    checkAvailableGifts();
 });

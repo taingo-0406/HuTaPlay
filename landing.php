@@ -85,21 +85,11 @@ if (!isset($_SESSION['email'])) {
           </div>
           <div class="modal-body">
             <h6 class="text-center current-points"></h6>
-            <table>
+            <table id = "gifts">
               <tr>
-                <th>Dutch Lady</th>
-                <th>50 Points</th>
-                <th><a href="landing.php">Redeem</a></th>
-              </tr>
-              <tr>
-                <th>Yakult</th>
-                <th>20 Points</th>
-                <th><a href="landing.php">Redeem</a></th>
-              </tr>
-              <tr>
-                <th>Supreme</th>
-                <th>50 Points</th>
-                <th><a href="landing.php">Redeem</a></th>
+                <th>Gift</th>
+                <th>Cost (points)</th>
+                <th><a href="landing.php">Exchange</a></th>
               </tr>
             </table>
           </div>
