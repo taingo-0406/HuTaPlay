@@ -4,6 +4,7 @@ session_start();
 if (isset($_SESSION['email'])) {
     // Retrieve the current stage for the user from the session or database
     $email = $_SESSION['email'];
+    $user_id = $_SESSION['user_id'];
     $gift = $_POST['gift'];
     $gift_id = $gift['id'];
     $gift_cost = $gift['cost'];
@@ -31,9 +32,12 @@ if (isset($_SESSION['email'])) {
                 $code = $row['code'];
                 $query1 = "UPDATE users SET points = points - $gift_cost WHERE email = '$email'";
                 $query2 = "UPDATE gift_codes SET exchanged = true WHERE code = $code";
+                $query3 = "INSERT INTO exchange_codes_history (user_id, gift_id, code_exchanged) VALUES ('$user_id', '$gift_id', '$code')";
+
                 $result1 = mysqli_query($conn, $query1);
                 $result2 = mysqli_query($conn, $query2);
-                if ($result1 && $result2) {
+                $result3 = mysqli_query($conn, $query3);
+                if ($result1 && $result2 && $result3) {
                     echo json_encode(array("success" => true, "code" => $code));
                 } else {
                     http_response_code(400);
