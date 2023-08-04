@@ -27,6 +27,7 @@ if (!isset($_SESSION['email'])) {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body>
@@ -85,7 +86,7 @@ if (!isset($_SESSION['email'])) {
           </div>
           <div class="modal-body">
             <h6 class="text-center current-points"></h6>
-            <table id = "gifts">
+            <table id="gifts">
               <tr>
                 <th>Gift</th>
                 <th>Cost (points)</th>

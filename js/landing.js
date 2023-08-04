@@ -45,10 +45,77 @@ $(document).ready(function () {
                 gifts = JSON.parse(data);
                 console.log(gifts);
                 for (i = 0; i < gifts.length; i++) {
-                    var row = $('<tr></tr>');
+                    row = $('<tr></tr>');
                     row.append('<td>' + gifts[i].name + '</td>');
                     row.append('<td>' + gifts[i].cost + '</td>');
-                    row.append('<td><button>Redeem</button></td>');
+                    redeemButton = $('<td><button>Redeem</button></td>');
+                    redeemButton.on('click', { gift: gifts[i] }, function (event) {
+                        gift = event.data.gift;
+                        swal.fire({
+                            title: "Are you sure?",
+                            text: "Are you sure you want to exchange for " + gift.name + "?",
+                            icon: "warning",
+                            confirmButtonText: 'OK',
+                            showCancelButton: true,
+                            cancelButtonText: 'Cancel',
+                        })
+                            .then((result) => {
+                                if (result.isConfirmed) {
+                                    $.ajax({
+                                        url: '../hutaplay/database/redeem_giftcode.php',
+                                        type: 'POST',
+                                        data: { gift: gift },
+                                        success: function (data) {
+                                            response = JSON.parse(data);
+                                            Swal.fire({
+                                                title: "Success!",
+                                                html: "Your gift code is: " + response.code + '<br><br><button id="copyButton">Copy Code</button>',
+                                                icon: "success",
+                                                didOpen: () => {
+                                                    const copyButton = document.querySelector("#copyButton");
+                                                    copyButton.addEventListener("click", () => {
+                                                        // Create an alert element
+                                                        const alertElement = document.createElement("div");
+                                                        alertElement.textContent = "Code copied!";
+                                                        alertElement.style.position = "absolute";
+                                                        alertElement.style.bottom = "10px";
+                                                        alertElement.style.right = "10px";
+                                                        alertElement.style.padding = "5px 10px";
+                                                        alertElement.style.backgroundColor = "#4CAF50";
+                                                        alertElement.style.color = "white";
+                                                        document.body.appendChild(alertElement);
+
+                                                        // Copy the code to the clipboard
+                                                        navigator.clipboard.writeText(response.code);
+
+                                                        // Show the alert for 3 seconds
+                                                        setTimeout(() => {
+                                                            alertElement.remove();
+                                                        }, 3000);
+
+                                                    });
+                                                }
+                                            });
+                                            checkPoints();
+                                        },
+                                        error: function (data) {
+                                            swal.fire(
+                                                'Cancelled!',
+                                                data.responseText,
+                                                'error'
+                                            )
+                                        },
+                                    });
+                                } else {
+                                    swal.fire(
+                                        'Cancelled',
+                                        'Your exchange has been cancelled',
+                                        'info'
+                                    )
+                                }
+                            });
+                    });
+                    row.append(redeemButton);
                     $('#gifts').append(row);
                 }
             }
