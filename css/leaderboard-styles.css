@@ -74,15 +74,6 @@ body{
 	border-bottom: 0;
 }
 
-.lboard_wrap .lboard_mem .img{
-	width: 50px;
-}
-
-.lboard_wrap .lboard_mem img{
-	display: block;
-	width: 100%;
-}
-
 .lboard_wrap .lboard_mem .name_bar{
 	margin: 0 20px;
 	width: calc(100% - 150px);
@@ -95,6 +86,7 @@ body{
 .lboard_wrap .lboard_mem .name_bar p span{
 	margin-right: 5px;
 }
+
 
 .lboard_wrap .lboard_mem .points{
 	width: 100px;

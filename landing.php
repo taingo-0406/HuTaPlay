@@ -108,31 +108,13 @@ if (!isset($_SESSION['email'])) {
     <!--De cai point vao day-->
     <br>
     <table>
-      <tr>
-        <th>Dutch Lady</th>
-        <th>50 Points</th>
-        <th><a href="landing.php">Redeem</a></th>
-      </tr>
-      <tr>
-        <th>Yakult</th>
-        <th>20 Points</th>
-        <th><a href="landing.php">Redeem</a></th>
-      </tr>
-      <tr>
-        <th>Supreme</th>
-        <th>50 Points</th>
-        <th><a href="landing.php">Redeem</a></th>
-      </tr>
+      
     </table>
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src="js/landing.js"></script>
-  <script>
-    function showPoint() {
-      $("#popup-result").removeClass("hidden");
-    }
-  </script>
+
 </body>
 
 </html>
