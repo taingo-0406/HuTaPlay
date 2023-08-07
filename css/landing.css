@@ -152,3 +152,16 @@ tr:nth-child(even) {
   border: none;
   background: none;
 }
+
+.trophy_btn {
+  position: absolute;
+  border: none;
+  background: none;
+  bottom: 0;
+  left: 0;
+}
+
+.trophy_btn img {
+  height: 60px;
+  width: 90px;
+}
