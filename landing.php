@@ -60,8 +60,11 @@ if (!isset($_SESSION['email'])) {
     <div class="pointandchart">
       <div class="img-circle text-center mb-3">
         <h6 class="text-center current-points"></h6>
-        <button type="button" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="cartbtn" data-toggle="modal" data-target="#exampleModal">
           <img src="images/cart_icon.png" alt="Image" />
+        </button>
+        <button type="button" class="historybtn" data-toggle="modal" data-target="#exampleModal">
+          <img src="images/history_icon.png" alt="Image" />
         </button>
       </div>
     </div>
