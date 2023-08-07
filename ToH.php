@@ -68,7 +68,7 @@
         window.location.href = "memory_game.php"
       }
       function redirectLeaderBoard() {
-        window.location.href="ToH-leaderboard.html"
+        window.location.href="leaderboard.html"
       }
     </script>
   </div>

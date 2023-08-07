@@ -8,6 +8,7 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
       rel="stylesheet"
     />
+    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/memory_game.css" />
   </head>
@@ -23,10 +24,24 @@
     <div class="controls-container">
       <p id="result"></p>
       <button id="start">Start Game</button>
+      <button class="bi bi-house" onclick = "redirectLandingPage()"></button>
+      <button class="bi bi-arrow-right-circle-fill" onclick = "redirectRubicPage()"></button>
+      <button class="bi bi-trophy-fill" onclick = "redirectLeaderBoard()"></button>
     </div>
     <!-- Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/call_database.js"></script>
     <script src="js/memory_game.js"></script>
+    <script>
+      function redirectLandingPage() {
+        window.location.href = "landing.php"
+      }
+      function redirectRubicPage() {
+        window.location.href = "ToH.php"
+      }
+      function redirectLeaderBoard() {
+        window.location.href="leaderboard.html"
+      }
+    </script>
   </body>
 </html>

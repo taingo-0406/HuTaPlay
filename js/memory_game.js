@@ -25,6 +25,19 @@ $(document).ready(function () {
     { name: "sloth", image: "images/memory_game/sloth.png"},
     { name: "cockatoo", image: "images/memory_game/cockatoo.png"},
     { name: "toucan", image: "images/memory_game/toucan.png"},
+    { name: "duck", image: "images/memory_game/duck.png"},
+    { name: "dog", image: "images/memory_game/dog.png"},
+    { name: "horse", image: "images/memory_game/horse.png"},
+    { name: "lion", image: "images/memory_game/lion.png"},
+    { name: "panda", image: "images/memory_game/panda.png"},
+    { name: "penguin", image: "images/memory_game/penguin.png"},
+    { name: "unicorn", image: "images/memory_game/unicorn.png"},
+    { name: "dragon", image: "images/memory_game/dragon.png"},
+    { name: "bear", image: "images/memory_game/bear.png"},
+    { name: "cat", image: "images/memory_game/cat.png"},
+    { name: "chicken", image: "images/memory_game/chicken.png"},
+    { name: "cheetah", image: "images/memory_game/cheetah.png"},
+    { name: "dinosaur", image: "images/memory_game/dinosaur.png"},
   ];
 
   //Initial Time
@@ -132,7 +145,9 @@ $(document).ready(function () {
                 result.innerHTML = `<h2>You Won</h2>
             <h4>Moves: ${movesCount}</h4>
             <h4 class = "pointtext"></h4>`;
+            startButton.style.display = "none";
                 stopGame();
+
               }
             } else {
               //if the cards dont match
