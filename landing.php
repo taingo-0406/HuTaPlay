@@ -60,10 +60,10 @@ if (!isset($_SESSION['email'])) {
     <div class="pointandchart">
       <div class="img-circle text-center mb-3">
         <h6 class="text-center current-points"></h6>
-        <button type="button" class="cartbtn" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="cartbtn" data-toggle="modal" data-target="#exchangeModal">
           <img src="images/cart_icon.png" alt="Image" />
         </button>
-        <button type="button" class="historybtn" data-toggle="modal" data-target="#exampleModal">
+        <button type="button" class="historybtn" data-toggle="modal" data-target="#historyModal">
           <img src="images/history_icon.png" alt="Image" />
         </button>
       </div>
@@ -77,7 +77,7 @@ if (!isset($_SESSION['email'])) {
     <!-- Button trigger modal -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    <div class="modal fade" id="exchangeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
       aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -103,12 +103,37 @@ if (!isset($_SESSION['email'])) {
         </div>
       </div>
     </div>
+    <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Exchange history</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <table id="code-exchanged">
+              <tr>
+                <th>Gift</th>
+                <th>Cost (points)</th>
+                <th>Code exchanged</th>
+                <th>Copy</th>
+              </tr>
+            </table>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="popup-result hidden" id="popup-result">
     <h2>You are having</h2>
     <h6 class="text-center current-points"></h6>
-    <!--De cai point vao day-->
     <br>
     <table>
       

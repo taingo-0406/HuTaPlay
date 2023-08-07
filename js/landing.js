@@ -121,7 +121,45 @@ $(document).ready(function () {
             }
         });
     }
+
+    function checkCodeExchanged() {
+        $.ajax({
+            url: '../hutaplay/database/check_code_exchanged.php',
+            type: 'GET',
+            success: function (data) {
+                gifts = JSON.parse(data);
+                for (i = 0; i < gifts.length; i++) {
+                    row = $('<tr></tr>');
+                    row.append('<td>' + gifts[i].name + '</td>');
+                    row.append('<td>' + gifts[i].cost + '</td>');
+                    row.append('<td>' + gifts[i].code + '</td>');
+                    const copyButton = $('<button>Copy</button>');
+                    copyButton.click(function () {
+                        code = $(this).parent().prev().text();
+                        navigator.clipboard.writeText(code);
+
+                        const alertElement = document.createElement("div");
+                        alertElement.textContent = "Code copied!";
+                        alertElement.style.position = "absolute";
+                        alertElement.style.bottom = "10px";
+                        alertElement.style.right = "10px";
+                        alertElement.style.padding = "5px 10px";
+                        alertElement.style.backgroundColor = "#4CAF50";
+                        alertElement.style.color = "white";
+                        
+                        document.body.appendChild(alertElement);
+                        setTimeout(() => {
+                            alertElement.remove();
+                        }, 3000);
+                    });
+                    row.append($('<td></td>').append(copyButton));
+                    $('#code-exchanged').append(row);
+                }
+            }
+        });
+    }
     checkPoints();
     checkCurrentStage();
     checkAvailableGifts();
+    checkCodeExchanged();
 });
