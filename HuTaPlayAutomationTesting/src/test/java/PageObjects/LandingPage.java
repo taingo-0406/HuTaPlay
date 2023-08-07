@@ -14,7 +14,8 @@ public class LandingPage extends BasePage {
 
     private final By _txtWelcome = By.xpath("//h4[@class='text-center']");
     private final By _btnLogout = By.xpath("//input[@type='submit' and @name='logout' and @value='Logout']");
-    private final By _btnPointExchange = By.xpath("//button[@type='button' and @data-toggle='modal' and @data-target='#exampleModal']/img[@alt='Image']");
+    private final By _btnPointExchange = By.xpath("//button[@type='button' and @class='cartbtn' and @data-toggle='modal' and @data-target='#exchangeModal']/img[@alt='Image']");
+    private final By _btnHistoryRedeem = By.xpath("//button[@type='button' and @class='historybtn' and @data-toggle='modal' and @data-target='#historyModal']/img[@alt='Image']");
     private final By _btnRedeemCoupon = By.xpath("//tr/td[count(//th[text()='Gift']/preceding-sibling::th) + 1][text()='Coupon 1']/..//button");
 
     private final By _btnOkRedeemCoupon = By.xpath("//button[@type='button' and @class='swal2-confirm swal2-styled' and @aria-label]");
@@ -26,6 +27,7 @@ public class LandingPage extends BasePage {
         return DRIVER.findElement(_btnLogout);
     }
     public WebElement getBtnPointExchange() { return DRIVER.findElement(_btnPointExchange); }
+    public WebElement getBtnHistoryRedeem() { return DRIVER.findElement(_btnHistoryRedeem); }
     public WebElement getBtnRedeemCoupon() { return DRIVER.findElement(_btnRedeemCoupon); }
     public WebElement getBtnOkRedeemCoupon() { return DRIVER.findElement(_btnOkRedeemCoupon); }
     public WebElement getBtnCancelRedeemCoupon() { return DRIVER.findElement(_btnCancelRedeemCoupon); }
@@ -58,4 +60,9 @@ public class LandingPage extends BasePage {
         this.getBtnOkRedeemCoupon().click();
 
     }
+
+    public void checkHistoryRedeem() {
+        this.getBtnHistoryRedeem().click();
+    }
+
 }
