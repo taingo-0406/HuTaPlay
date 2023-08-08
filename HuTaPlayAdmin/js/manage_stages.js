@@ -3,14 +3,23 @@ $(document).ready(function () {
     $('[data-toggle="tooltip"]').tooltip();
     // define the function to get all stages' information
     function getStages() {
-        // send an AJAX request to the get_stages.php script
         $.ajax({
             url: '../database/admin/check_all_stages.php',
             type: 'GET',
             dataType: 'json',
             success: function (stages) {
                 // initialize the DataTables plugin on the table
-                $('.table').DataTable({
+                var table = $('.table').DataTable({
+                    dom: 'Bfrtip',
+                    lengthChange: false,
+                    buttons: [
+                        {
+                            text: 'Add new stage',
+                            action: function () {
+                                $('#addEmployeeModal').modal('show');
+                            }
+                        }
+                    ],
                     data: stages,
                     columns: [
                         { data: 'id' },
@@ -25,6 +34,8 @@ $(document).ready(function () {
                         }
                     ]
                 });
+                table.buttons().container()
+                    .appendTo('#example_wrapper .col-md-6:eq(0)');
             }
         });
     }
@@ -46,9 +57,7 @@ $(document).ready(function () {
         });
     }
 
-    // add an event listener to the form
     $('#edit-stage').on('submit', function (event) {
-        // prevent the default form submission
         event.preventDefault();
         const id = $('#edit-stage input[name="id"]').val();
         const toh_discs = $('#edit-stage input[name="toh-discs"]').val();
@@ -79,6 +88,36 @@ $(document).ready(function () {
         });
     });
 
+    $('#add-stage').on('submit', function (event) {
+        event.preventDefault();
+        const toh_discs = $('#add-stage input[name="toh-discs"]').val();
+        const memory_size = $('#add-stage input[name="memory-size"]').val();
+        const optimal_points = $('#add-stage input[name="optimal-points"]').val();
+        $('#addEmployeeModal').modal('hide');
+        $.ajax({
+            url: '../database/admin/add_stage.php',
+            type: 'POST',
+            dataType: 'json',
+            data: { toh_discs: toh_discs, memory_size: memory_size, optimal_points: optimal_points },
+            success: function () {
+                Swal.fire({
+                    title: 'Success!',
+                    text: 'Stage added.',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                })
+                getStagesAfterEditing();
+            },
+            error: function () {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Something wrong while adding.',
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                })
+            }
+        });
+    });
     $('.table tbody').on('click', '.edit', function () {
         tr = $(this).closest('tr');
         // get the data from the table cells

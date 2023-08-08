@@ -68,11 +68,11 @@
             </div>
             <div class="form-group">
               <label>Points</label>
-              <input type="text" class="form-control" name="points" required />
+              <input type="number" class="form-control" name="points" required />
             </div>
             <div class="form-group">
               <label>Current stage</label>
-              <input type="text" class="form-control" name="stage" required />
+              <input type="number" class="form-control" name="stage" required />
             </div>
           </div>
           <div class="modal-footer">
