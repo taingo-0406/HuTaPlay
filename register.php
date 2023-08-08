@@ -120,6 +120,16 @@
 					</script>";
 				}
 				// Validate password length
+				elseif (strlen($fullname) > 64) {
+					echo "<script>
+					Swal.fire({
+						title: 'Error!',
+						text: 'Name must be less than 64 characters.',
+						icon: 'error',
+						confirmButtonText: 'OK'
+					});
+					</script>";
+				}
 				elseif (strlen($password) < 6) {
 					echo "<script>
 					Swal.fire({
