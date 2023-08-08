@@ -14,13 +14,7 @@ if (isset($_POST['email'], $_POST['name'], $_POST['points'], $_POST['stage'])) {
 
     $conn->close();
 
-    //echo all the data
-    echo json_encode(array(
-        'email' => $email,
-        'name' => $name,
-        'points' => $points,
-        'stage' => $stage
-    ));
+    echo 1;
 } else {
     http_response_code(400);
     echo json_encode(array("error" => "No data found."));
