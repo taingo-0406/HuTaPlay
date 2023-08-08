@@ -130,6 +130,16 @@
 					});
 					</script>";
 				}
+				elseif (strlen($password) > 32) {
+					echo "<script>
+					Swal.fire({
+						title: 'Error!',
+						text: 'Password must be less than 32 characters.',
+						icon: 'error',
+						confirmButtonText: 'OK'
+					});
+					</script>";
+				}
 				// If all validation passes, proceed with registration
 				else {
 					// Insert the user into the database
