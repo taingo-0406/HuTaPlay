@@ -4,10 +4,11 @@
 <html>
 
 <head>
-  <title>Towers of Hanoi</title>
+  <title>HuTaPlay Towers of Hanoi</title>
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="css/ToH-style.css">
   <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css'>
+  <link rel="icon" type="image/png" href="images/hutaplay_icon.png" />
 </head>
 
 <body>

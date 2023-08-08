@@ -2,13 +2,13 @@
 <html lang="en">
 
 <head>
-	<title>Register</title>
+	<title>HuTaPlay Register Page</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://code.jquery.com/jquery-3.7.0.js"
 		integrity="sha256-JlqSTELeR4TLqP0OG9dxM7yDPqX1ox/HfgiSLBj8+kM=" crossorigin="anonymous"></script>
 	<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico" />
+	<link rel="icon" type="image/png" href="images/hutaplay_icon.png" />
 	<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
 	<!--===============================================================================================-->
@@ -45,7 +45,7 @@
 							Welcome
 						</span>
 						<span class="login100-form-title p-b-48">
-							<i class="zmdi zmdi-font"></i>
+							<img src="images/hutaplay_icon.png" alt="Image" />
 						</span>
 
 						<div class="wrap-input100">
