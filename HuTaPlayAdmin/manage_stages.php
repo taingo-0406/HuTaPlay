@@ -24,6 +24,18 @@
 
 <body>
     <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Admin</a>
+                </div>
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#">Manage 1</a></li>
+                    <li><a href="#">Manage Stages</a></li>
+                    <li><a href="#">zz</a></li>
+                </ul>
+            </div>
+        </nav>
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -49,36 +61,36 @@
         </div>
     </div>
     <!-- Add Modal HTML -->
-	<div id="addEmployeeModal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<form id = "add-stage">
-					<div class="modal-header">						
-						<h4 class="modal-title">Add Stage</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					</div>
-					<div class="modal-body">					
-						<div class="form-group">
-							<label>Toh Discs Amount (if odd)</label>
-							<input type="number" class="form-control" name="toh-discs" value = 0>
-						</div>
-						<div class="form-group">
-							<label>Memory Size (if even)</label>
-							<input type="number" class="form-control" name="memory-size" value = 0>
-						</div>
-						<div class="form-group">
-							<label>Optimal Points</label>
-							<input type="number" class="form-control" name="optimal-points" required>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-						<input type="submit" class="btn btn-success" value="Add">
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
+    <div id="addEmployeeModal" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form id="add-stage">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Stage</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Toh Discs Amount (if odd)</label>
+                            <input type="number" class="form-control" name="toh-discs" value=0>
+                        </div>
+                        <div class="form-group">
+                            <label>Memory Size (if even)</label>
+                            <input type="number" class="form-control" name="memory-size" value=0>
+                        </div>
+                        <div class="form-group">
+                            <label>Optimal Points</label>
+                            <input type="number" class="form-control" name="optimal-points" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
+                        <input type="submit" class="btn btn-success" value="Add">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <!-- Edit Modal HTML -->
     <div id="editEmployeeModal" class="modal fade">
