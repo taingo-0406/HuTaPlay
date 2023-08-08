@@ -9,31 +9,44 @@ $(document).ready(function () {
       type: 'GET',
       dataType: 'json',
       success: function (users) {
-        // get the table body element
-        tbody = $('.table tbody');
-        // clear the table body
-        tbody.empty();
-        // loop through the users array
-        for (i = 0; i < users.length; i++) {
-          // create a new table row
-          tr = $('<tr></tr>');
-          // create the table cells
-          tdId = $('<td></td>').text(users[i].id);
-          tdName = $('<td></td>').text(users[i].name);
-          tdEmail = $('<td></td>').text(users[i].email);
-          tdPoints = $('<td></td>').text(users[i].points);
-          tdStage = $('<td></td>').text(users[i].stage);
-          tdActions = $(
-            '<td><a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"></i></a></td>'
-          );
-          // append the table cells to the table row
-          tr.append(tdId, tdName, tdEmail, tdPoints, tdStage, tdActions);
-          // append the table row to the table body
-          tbody.append(tr);
-        }
+        // initialize the DataTables plugin on the table
+        $('.table').DataTable({
+          data: users,
+          columns: [
+            { data: 'id' },
+            { data: 'name' },
+            { data: 'email' },
+            { data: 'points' },
+            { data: 'stage' },
+            {
+              data: null,
+              defaultContent:
+                '<a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit"></i></a>',
+              orderable: false
+            }
+          ]
+        });
       }
     });
   }
+
+  function getUsersAfterEditing() {
+    table = $('.table').DataTable();
+    $.ajax({
+      url: '../database/admin/check_all_users.php',
+      type: 'GET',
+      dataType: 'json',
+      success: function (users) {
+        // clear the existing data from the table
+        table.clear();
+        // add the new data to the table
+        table.rows.add(users);
+        // redraw the table
+        table.draw();
+      }
+    });
+  }
+
 
   // add an event listener to the form
   $('#edit-user').on('submit', function (event) {
@@ -57,6 +70,7 @@ $(document).ready(function () {
           icon: 'success',
           confirmButtonText: 'OK',
         })
+        getUsersAfterEditing();
       },
       error: function () {
         Swal.fire({
@@ -73,10 +87,10 @@ $(document).ready(function () {
     // get the current table row
     tr = $(this).closest('tr');
     // get the data from the table cells
-    name = tr.find('td:eq(1)').text();
-    email = tr.find('td:eq(2)').text();
-    points = tr.find('td:eq(3)').text();
-    stage = tr.find('td:eq(4)').text();
+    const name = tr.find('td:eq(1)').text();
+    const email = tr.find('td:eq(2)').text();
+    const points = tr.find('td:eq(3)').text();
+    const stage = tr.find('td:eq(4)').text();
     // fill the modal's input fields with the data
     $('#editEmployeeModal .modal-body input:eq(0)').val(name);
     $('#editEmployeeModal .modal-body input:eq(1)').val(email);
