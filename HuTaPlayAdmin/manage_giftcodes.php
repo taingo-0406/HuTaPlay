@@ -81,8 +81,8 @@
                         <div class="form-group">
                             <label>Exchanged</label>
                             <select class="form-select" name="exchanged">
-                                <option value="1">Yes</option>
                                 <option value="0">No</option>
+                                <option value="1">Yes</option>
                             </select>
                         </div>
                     </div>
