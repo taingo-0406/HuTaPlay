@@ -1,3 +1,8 @@
+<?php
+require 'admin_auth.php';
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 

@@ -106,6 +106,7 @@
 				$_SESSION['user_id'] = $user['id'];
 				$_SESSION['fullname'] = $user['full_name'];
 				$_SESSION['current_stage'] = $user['current_stage'];
+				$_SESSION['role'] = $user['role'];
 				header("Location: landing.php");
 
 				// Stop further execution of the script
