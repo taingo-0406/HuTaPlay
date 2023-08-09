@@ -153,7 +153,7 @@
 				// If all validation passes, proceed with registration
 				else {
 					// Insert the user into the database
-					$sql = "INSERT INTO users (email, full_name, password, points, current_stage) VALUES ('$email', '$fullname', '$hashedPassword', 0, 1)";
+					$sql = "INSERT INTO users (email, full_name, password, points, current_stage, role) VALUES ('$email', '$fullname', '$hashedPassword', 0, 1, 'user')";
 
 					if ($conn->query($sql) === TRUE) {
 						echo "<script>
