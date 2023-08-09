@@ -1,4 +1,10 @@
-
+<?php
+    session_start();
+    if ($_SESSION['current_stage'] % 2 == 0) {
+        header('Location: memory_game.php');
+        exit;
+    }
+?>
 
 <!DOCTYPE html>
 <html>

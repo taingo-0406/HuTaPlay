@@ -1,3 +1,11 @@
+<?php
+    session_start();
+    if ($_SESSION['current_stage'] % 2 == 1) {
+        header('Location: ToH.php');
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
