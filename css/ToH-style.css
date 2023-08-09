@@ -176,3 +176,14 @@ body {
   cursor: pointer;
   float: left;
 }
+
+audio {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.audio2 {
+  display: none;
+}

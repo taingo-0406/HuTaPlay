@@ -69,7 +69,8 @@ $(document).ready(function () {
     if (solved()) {
       // console.log(moves);
       saveRecordToDatabase(moves, current_stage);
-
+      $(".audio1").pause();
+      $(".audio2").play();
       $(".totalmoves").text(moves + " moves!");
       $("#popup-result").removeClass("hidden");
 

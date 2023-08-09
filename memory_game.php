@@ -29,6 +29,10 @@
       <button class="bi bi-arrow-right-circle-fill" onclick = "redirectRubicPage()"></button>
       <button class="bi bi-trophy-fill" onclick = "redirectLeaderBoard()"></button>
     </div>
+
+    <audio controls autoplay>
+      <source src="sound/babyshark_memory.mp3" type="audio/mpeg">
+    </audio>
     <!-- Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="js/call_database.js"></script>

@@ -165,3 +165,10 @@ tr:nth-child(even) {
   height: 60px;
   width: 90px;
 }
+
+audio {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}

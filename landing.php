@@ -51,6 +51,10 @@ if (!isset($_SESSION['email'])) {
       </h4>
     </div>
 
+    <audio controls autoplay>
+      <source src="sound/landing.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="pointandchart">
       <div class="img-circle text-center mb-3">
         <h6 class="text-center current-points"></h6>
@@ -71,8 +75,7 @@ if (!isset($_SESSION['email'])) {
     <!-- Button trigger modal -->
 
     <!-- Modal -->
-    <div class="modal fade" id="exchangeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <div class="modal fade" id="exchangeModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -97,8 +100,7 @@ if (!isset($_SESSION['email'])) {
         </div>
       </div>
     </div>
-    <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-      aria-hidden="true">
+    <div class="modal fade" id="historyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
