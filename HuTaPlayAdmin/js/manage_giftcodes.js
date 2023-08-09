@@ -1,18 +1,33 @@
 $(document).ready(function () {
     // Activate tooltip
     $('[data-toggle="tooltip"]').tooltip();
-    function getGifts() {
+    function getGiftcodes() {
         $.ajax({
-            url: '../database/admin/check_all_gifts.php',
+            url: '../database/admin/check_all_giftcodes.php',
             type: 'GET',
             dataType: 'json',
             success: function (gifts) {
                 gifts = gifts.map(gift => ({
                     ...gift,
-                    display: Number(gift.display)
+                    exchanged: Number(gift.exchanged)
                 }));
+                const select = $('<select class="form-control" name="name"></select>');
+
+                gifts.forEach(function (gift) {
+                    const exists = select.find('option[value="' + gift.gift_id + '"]').length > 0;
+
+                    if (!exists) {
+                        const option = $('<option></option>')
+                            .attr('value', gift.gift_id)
+                            .text(gift.gift_name);
+                        select.append(option);
+                    }
+                });
+
+                $('.gift-name').append(select);
+
                 // initialize the DataTables plugin on the table
-                var table = $('.table').DataTable({
+                const table = $('.table').DataTable({
                     dom: 'Bfrtip',
                     lengthChange: false,
                     buttons: [
@@ -26,10 +41,10 @@ $(document).ready(function () {
                     data: gifts,
                     columns: [
                         { data: 'id' },
-                        { data: 'name' },
-                        { data: 'cost' },
+                        { data: 'gift_name' },
+                        { data: 'code' },
                         {
-                            data: 'display',
+                            data: 'exchanged',
                             render: function (data, type, row) {
                                 return data ? 'Yes' : 'No';
                             }
@@ -48,17 +63,18 @@ $(document).ready(function () {
         });
     }
 
-    function getGiftsAfterEditing() {
+    function getGiftcodesAfterEditing() {
         table = $('.table').DataTable();
         $.ajax({
-            url: '../database/admin/check_all_gifts.php',
+            url: '../database/admin/check_all_giftcodes.php',
             type: 'GET',
             dataType: 'json',
             success: function (gifts) {
                 gifts = gifts.map(gift => ({
                     ...gift,
-                    display: Number(gift.display)
+                    exchanged: Number(gift.exchanged)
                 }));
+
                 // clear the existing data from the table
                 table.clear();
                 // add the new data to the table
@@ -72,14 +88,14 @@ $(document).ready(function () {
     $('#edit-gift').on('submit', function (event) {
         event.preventDefault();
         const id = $('#edit-gift input[name="id"]').val();
-        const name = $('#edit-gift input[name="name"]').val();
-        const cost = $('#edit-gift input[name="cost"]').val();
-        const display = $('#edit-gift select[name="display"]').val();
+        const name = $('#edit-gift select[name="name"]').val();
+        const code = $('#edit-gift input[name="code"]').val();
+        const exchanged = $('#edit-gift select[name="exchanged"]').val();
         $('#editEmployeeModal').modal('hide');
         $.ajax({
-            url: '../database/admin/edit_gift.php',
+            url: '../database/admin/edit_giftcode.php',
             type: 'POST',
-            data: { id: id, name: name, cost: cost, display: display },
+            data: { id: id, name: name, code: code, exchanged: exchanged },
             success: function () {
                 Swal.fire({
                     title: 'Success!',
@@ -87,7 +103,7 @@ $(document).ready(function () {
                     icon: 'success',
                     confirmButtonText: 'OK',
                 })
-                getGiftsAfterEditing();
+                getGiftcodesAfterEditing();
             },
             error: function () {
                 Swal.fire({
@@ -102,47 +118,58 @@ $(document).ready(function () {
 
     $('#add-gift').on('submit', function (event) {
         event.preventDefault();
-        const name = $('#add-gift input[name="name"]').val();
-        const cost = $('#add-gift input[name="cost"]').val();
-        const display = $('#add-gift select[name="display"]').val();
+        const name = $('#add-gift select[name="name"]').val();
+        const codes = $('#add-gift textarea[name="code"]').val().split('\n');
+        const exchanged = $('#add-gift select[name="exchanged"]').val();
         $('#addEmployeeModal').modal('hide');
-        $.ajax({
-            url: '../database/admin/add_gift.php',
-            type: 'POST',
-            dataType: 'json',
-            data: { name: name, cost: cost, display: display },
-            success: function () {
-                Swal.fire({
-                    title: 'Success!',
-                    text: 'Gift added.',
-                    icon: 'success',
-                    confirmButtonText: 'OK',
-                })
-                getGiftsAfterEditing();
-            },
-            error: function () {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Something wrong while adding.',
-                    icon: 'error',
-                    confirmButtonText: 'OK',
-                })
-            }
+
+        // Create an array to hold the AJAX requests
+        var requests = [];
+
+        // Send an AJAX request for each code
+        codes.forEach(function (code) {
+            var request = $.ajax({
+                url: '../database/admin/add_giftcodes.php',
+                type: 'POST',
+                dataType: 'json',
+                data: { name: name, code: code, exchanged: exchanged }
+            });
+            requests.push(request);
+        });
+
+        // Wait for all the requests to complete
+        $.when.apply($, requests).then(function () {
+            // All requests completed successfully
+            Swal.fire({
+                title: 'Success!',
+                text: 'Gifts added.',
+                icon: 'success',
+                confirmButtonText: 'OK',
+            })
+            getGiftcodesAfterEditing();
+        }, function () {
+            // At least one request failed
+            Swal.fire({
+                title: 'Error!',
+                text: 'Something wrong while adding.',
+                icon: 'error',
+                confirmButtonText: 'OK',
+            })
+            getGiftcodesAfterEditing();
         });
     });
+
     $('.table tbody').on('click', '.edit', function () {
         tr = $(this).closest('tr');
         // get the data from the table cells
         const id = tr.find('td:eq(0)').text();
-        const name = tr.find('td:eq(1)').text();
-        const cost = tr.find('td:eq(2)').text();
-        const display = tr.find('td:eq(3)').text();
+        const code = tr.find('td:eq(2)').text();
+        const exchanged = tr.find('td:eq(3)').text();
         // fill the modal's input fields with the data
         $('#editEmployeeModal .modal-body input:eq(0)').val(id);
-        $('#editEmployeeModal .modal-body input:eq(1)').val(name);
-        $('#editEmployeeModal .modal-body input:eq(2)').val(cost);
-        $('#editEmployeeModal .modal-body select[name="display"]').val(display === 'Yes' ? '1' : '0');
+        $('#editEmployeeModal .modal-body input:eq(1)').val(code);
+        $('#editEmployeeModal .modal-body select[name="exchanged"]').val(exchanged === 'Yes' ? '1' : '0');
     });
 
-    getGifts();
+    getGiftcodes();
 });
