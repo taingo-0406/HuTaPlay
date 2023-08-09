@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if ($_SESSION['current_stage'] % 2 == 0) {
+    if ($_SESSION['current_stage'] % 2 == 0 || !isset($_SESSION['email'])) {
         header('Location: memory_game.php');
         exit;
     }

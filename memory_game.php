@@ -1,6 +1,6 @@
 <?php
     session_start();
-    if ($_SESSION['current_stage'] % 2 == 1) {
+    if ($_SESSION['current_stage'] % 2 == 1 || !isset($_SESSION['email'])) {
         header('Location: ToH.php');
         exit;
     }
