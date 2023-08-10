@@ -21,7 +21,7 @@ $(document).ready(function () {
                     for (let i = 1; i < current_stage; i++) {
                         $('.stages').append('<span class="circle passed">' + i + '</span>');
                     }
-                    if (current_stage < response.maxId) {
+                    if (current_stage < response.max_stage) {
                         $('.stages').append('<a href="access_game.php"> <span class="circle current">' + current_stage + '</span> </a>');
                         $('.stages').append('<span class="circle locked"><i class="fa fa-lock" aria-hidden="true"></i></span>');
                     } else if (current_stage == response.max_stage) {
