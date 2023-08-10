@@ -7,6 +7,21 @@ if (isset($_SESSION['email'])) {
     $currentStage = $_SESSION['current_stage'];
 
     require_once 'database.php';
+
+    // Get the highest id from the stage table
+    $stmt = $conn->prepare("SELECT MAX(id) AS max_id FROM stage");
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $row = $result->fetch_assoc();
+    $maxId = $row['max_id'];
+    $stmt->close();
+
+    // Check if the currentStage value is higher than the maxId
+    if ($currentStage > $maxId) {
+        // Set the currentStage value to the maxId
+        $currentStage = $maxId;
+    }
+
     // Prepare and execute the query
     $stmt = $conn->prepare("SELECT toh_disk, memory_size FROM stage WHERE id = ?");
     $stmt->bind_param("i", $currentStage);
@@ -25,6 +40,7 @@ if (isset($_SESSION['email'])) {
         'current_stage' => $currentStage,
         'toh_disk' => $tohDisk,
         'memory_size' => $memory_size,
+        'max_stage' => $maxId
     );
     // Convert the array to JSON
     $jsonData = json_encode($stageInfo);

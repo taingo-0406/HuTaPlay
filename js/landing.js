@@ -23,8 +23,12 @@ $(document).ready(function () {
                     for (let i = 1; i < current_stage; i++) {
                         $('.stages').append('<span class="circle passed">' + i + '</span>');
                     }
-                    $('.stages').append('<a href="access_game.php"> <span class="circle current">' + current_stage + '</span> </a>');
-                    $('.stages').append('<span class="circle locked"><i class="fa fa-lock" aria-hidden="true"></i></span>');
+                    if (current_stage < response.maxId) {
+                        $('.stages').append('<a href="access_game.php"> <span class="circle current">' + current_stage + '</span> </a>');
+                        $('.stages').append('<span class="circle locked"><i class="fa fa-lock" aria-hidden="true"></i></span>');
+                    } else {
+                        $('.stages').append('<h1> You have finished all stages for now! </h1>');
+                    }
                 } else {
                     console.log("Error checking current stage.");
                     window.location.href = "landing.php";
@@ -144,7 +148,7 @@ $(document).ready(function () {
                         alertElement.style.padding = "5px 10px";
                         alertElement.style.backgroundColor = "#4CAF50";
                         alertElement.style.color = "white";
-                        
+
                         document.body.appendChild(alertElement);
                         setTimeout(() => {
                             alertElement.remove();

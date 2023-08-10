@@ -9,9 +9,6 @@ function saveRecordToDatabase(moves, current_stage) {
             stage_id: current_stage,
         },
         success: function (response) {
-            // Handle the success response
-            console.log(response);
-            console.log(moves);
             $(".pointtext").text("You have received " + response + " points!");
         },
         error: function () {
