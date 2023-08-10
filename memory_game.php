@@ -42,7 +42,7 @@ if ($_SESSION['current_stage'] % 2 == 1) {
   </div>
 
   <audio controls autoplay class="audio1">
-    <source src="sound/babyshark_memory.mp3" type="audio/mpeg">
+    <source src="sound/memorygame_sound.mp3" type="audio/mpeg">
   </audio>
   <audio controls class="audio2">
     <source src="sound/winsoundeffect.mp3" type="audio/mpeg">
