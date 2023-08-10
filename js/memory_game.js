@@ -10,35 +10,38 @@ $(document).ready(function () {
   let interval;
   let firstCard = false;
   let secondCard = false;
+  const items = [];
 
-  //Items array
-  const items = [
-    { name: "bee", image: "images/memory_game/bee.png" },
-    { name: "crocodile", image: "images/memory_game/crocodile.png" },
-    { name: "macaw", image: "images/memory_game/macaw.png" },
-    { name: "gorilla", image: "images/memory_game/gorilla.png" },
-    { name: "tiger", image: "images/memory_game/tiger.png" },
-    { name: "monkey", image: "images/memory_game/monkey.png" },
-    { name: "chameleon", image: "images/memory_game/chameleon.png" },
-    { name: "piranha", image: "images/memory_game/piranha.png" },
-    { name: "anaconda", image: "images/memory_game/anaconda.png" },
-    { name: "sloth", image: "images/memory_game/sloth.png" },
-    { name: "cockatoo", image: "images/memory_game/cockatoo.png" },
-    { name: "toucan", image: "images/memory_game/toucan.png" },
-    { name: "duck", image: "images/memory_game/duck.png" },
-    { name: "dog", image: "images/memory_game/dog.png" },
-    { name: "horse", image: "images/memory_game/horse.png" },
-    { name: "lion", image: "images/memory_game/lion.png" },
-    { name: "panda", image: "images/memory_game/panda.png" },
-    { name: "penguin", image: "images/memory_game/penguin.png" },
-    { name: "unicorn", image: "images/memory_game/unicorn.png" },
-    { name: "dragon", image: "images/memory_game/dragon.png" },
-    { name: "bear", image: "images/memory_game/bear.png" },
-    { name: "cat", image: "images/memory_game/cat.png" },
-    { name: "chicken", image: "images/memory_game/chicken.png" },
-    { name: "cheetah", image: "images/memory_game/cheetah.png" },
-    { name: "dinosaur", image: "images/memory_game/dinosaur.png" },
-  ];
+  function getMemoryImages() {
+    return new Promise((resolve, reject) => {
+      $.ajax({
+        url: '../hutaplay/database/admin/check_all_memory_images.php',
+        type: 'GET',
+        dataType: 'json',
+        success: function (data) {
+          // Loop through the image data
+          for (let i = 0; i < data.length; i++) {
+            // Get the id and image data from the current object
+            const id = data[i].id;
+            const image = data[i].image;
+
+            // Create a new object with the id and image data
+            const item = { name: id, image: 'data:image/jpeg;base64,' + image };
+
+            // Add the new object to the items array
+            items.push(item);
+          }
+
+          // Resolve the promise with the items array
+          resolve(items);
+        },
+        error: function (jqXHR, textStatus, errorThrown) {
+          // Reject the promise with the error
+          reject(errorThrown);
+        }
+      });
+    });
+  }
 
   //Initial Time
   let seconds = 0,
@@ -68,7 +71,7 @@ $(document).ready(function () {
   };
 
   //Pick random objects from the items array
-  const generateRandom = (size = memory_size) => {
+  const generateRandom = (items, size = memory_size) => {
     //temporary array
     let tempArray = [...items];
     //initializes cardValues array
@@ -84,6 +87,7 @@ $(document).ready(function () {
     }
     return cardValues;
   };
+
 
   const matrixGenerator = (cardValues, size = memory_size) => {
     gameContainer.innerHTML = "";
@@ -201,12 +205,16 @@ $(document).ready(function () {
     })
   );
 
-  //Initialize values and func calls
-  const initializer = () => {
-    result.innerText = "";
-    winCount = 0;
-    let cardValues = generateRandom();
-    console.log(cardValues);
-    matrixGenerator(cardValues);
+  const initializer = async () => {
+    try {
+      await getMemoryImages();
+      result.innerText = "";
+      winCount = 0;
+      let cardValues = generateRandom(items);
+      matrixGenerator(cardValues);
+    } catch (error) {
+      console.error(error);
+    }
   };
+
 });
