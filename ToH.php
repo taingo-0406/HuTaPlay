@@ -1,9 +1,13 @@
 <?php
-    session_start();
-    if ($_SESSION['current_stage'] % 2 == 0 || !isset($_SESSION['email'])) {
-        header('Location: memory_game.php');
-        exit;
-    }
+session_start();
+if (!isset($_SESSION['email'])) {
+  header('Location: login.php');
+  exit;
+}
+if ($_SESSION['current_stage'] % 2 == 0) {
+  header('Location: memory_game.php');
+  exit;
+}
 ?>
 
 <!DOCTYPE html>
@@ -20,7 +24,7 @@
 <body>
   <div id="canvas">
     <div id="title">
-      <h1>Towers Of Hanoi - Stage <i class = "current-stage"></i></h1>
+      <h1>Towers Of Hanoi - Stage <i class="current-stage"></i></h1>
       <h3>You need to move all disks in column 1 to column 3 in ascending order</h3>
     </div>
     </br>
@@ -59,15 +63,15 @@
 
     <div class="popup-result hidden" id="popup-result">
       <h2>CONGRATULATION!</h2>
-      <p>You have solved this level in <i class = "totalmoves"></i></p>
-      <p class = "pointtext"></p>
+      <p>You have solved this level in <i class="totalmoves"></i></p>
+      <p class="pointtext"></p>
       <!--De cai point vao day-->
       <br>
-      <button class="bi bi-house" onclick = "redirectLandingPage()"></button>
-      <button class="bi bi-arrow-right-circle-fill" onclick = "redirectRubicPage()"></button>
-      <button class="bi bi-trophy-fill" onclick = "redirectLeaderBoard()"></button>
+      <button class="bi bi-house" onclick="redirectLandingPage()"></button>
+      <button class="bi bi-arrow-right-circle-fill" onclick="redirectRubicPage()"></button>
+      <button class="bi bi-trophy-fill" onclick="redirectLeaderBoard()"></button>
     </div>
-<!-- </br>
+    <!-- </br>
     <div id="solve">
       <button type="button" class="buttons">Solve</button>
     </div>
@@ -83,7 +87,7 @@
         window.location.href = "memory_game.php"
       }
       function redirectLeaderBoard() {
-        window.location.href="leaderboard.html"
+        window.location.href = "leaderboard.html"
       }
     </script>
   </div>

@@ -26,6 +26,9 @@ require 'admin_auth.php';
 
 <body>
   <div class="container">
+    <?php
+    require 'navbar.php';
+    ?>
     <div class="table-responsive">
       <div class="table-wrapper">
         <div class="table-title">

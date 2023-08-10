@@ -1,3 +1,11 @@
+<?php
+session_start();
+if (isset($_SESSION['email'])) {
+	header("Location: landing.php");
+	exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -129,8 +137,7 @@
 						confirmButtonText: 'OK'
 					});
 					</script>";
-				}
-				elseif (strlen($password) < 6) {
+				} elseif (strlen($password) < 6) {
 					echo "<script>
 					Swal.fire({
 						title: 'Error!',
@@ -139,8 +146,7 @@
 						confirmButtonText: 'OK'
 					});
 					</script>";
-				}
-				elseif (strlen($password) > 32) {
+				} elseif (strlen($password) > 32) {
 					echo "<script>
 					Swal.fire({
 						title: 'Error!',

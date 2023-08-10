@@ -28,18 +28,9 @@ require 'admin_auth.php';
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">Admin</a>
-                </div>
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">Manage 1</a></li>
-                    <li><a href="#">Manage Stages</a></li>
-                    <li><a href="#">zz</a></li>
-                </ul>
-            </div>
-        </nav>
+        <?php
+            require 'navbar.php';
+        ?>
         <div class="table-responsive">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -69,6 +60,8 @@ require 'admin_auth.php';
                 <form id="add-image">
                     <div class="modal-header">
                         <h4 class="modal-title">Add Images</h4>
+                        <br>
+                        <small>Add up to 20 images at once</small>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                     </div>
                     <div class="modal-body">
