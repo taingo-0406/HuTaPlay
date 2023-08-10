@@ -83,18 +83,6 @@ $(document).ready(function () {
   });
 
   $('.table tbody').on('click', '.edit', function () {
-    // get the modal's ID
-    const modalId = $('#myModal').attr('id');
-
-    // check if the modal's ID is odd or even
-    if (modalId % 2 == 1) {
-      // if the modal's ID is odd, disable the input with the name "toh-discs"
-      $('input[name="toh-discs"]').prop('disabled', true);
-    } else {
-      // if the modal's ID is even, disable the input with the name "memory_size"
-      $('input[name="memory_size"]').prop('disabled', true);
-    }
-
     // get the current table row
     tr = $(this).closest('tr');
     // get the data from the table cells
