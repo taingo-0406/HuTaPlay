@@ -18,15 +18,13 @@ $(document).ready(function () {
             success: function (response) {
                 if (response != null) {
                     current_stage = response.current_stage;
-                    console.log("Current stage: " + current_stage);
-                    //append the current stage to the page
                     for (let i = 1; i < current_stage; i++) {
                         $('.stages').append('<span class="circle passed">' + i + '</span>');
                     }
                     if (current_stage < response.maxId) {
                         $('.stages').append('<a href="access_game.php"> <span class="circle current">' + current_stage + '</span> </a>');
                         $('.stages').append('<span class="circle locked"><i class="fa fa-lock" aria-hidden="true"></i></span>');
-                    } else {
+                    } else if (current_stage == response.max_stage) {
                         $('.stages').append('<h1> You have finished all stages for now! </h1>');
                     }
                 } else {
