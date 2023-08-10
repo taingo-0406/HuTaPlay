@@ -136,7 +136,11 @@ button {
 
 audio {
   position: fixed;
-  top: 0;
-  left: 50%;
+  top: 5%;
+  left: 10%;
   transform: translateX(-50%);
+}
+
+.audio2 {
+  display: none;
 }

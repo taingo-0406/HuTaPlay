@@ -51,9 +51,7 @@ if (!isset($_SESSION['email'])) {
       </h4>
     </div>
 
-    <audio controls autoplay>
-      <source src="sound/landing.mp3" type="audio/mpeg">
-    </audio>
+
 
     <div class="pointandchart">
       <div class="img-circle text-center mb-3">
@@ -127,18 +125,38 @@ if (!isset($_SESSION['email'])) {
     </div>
   </div>
 
+  <div class="modal fade" id="settingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <audio id="audio" controls autoplay>
+            <source src="sound/landing.mp3" type="audio/mpeg">
+          </audio>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
   <button class="trophy_btn" onclick="redirectLeaderBoard()">
     <img src="images/trophy_icon.png" alt="Image" />
   </button>
 
+  <button class="setting_btn" data-toggle="modal" data-target="#settingModal">
+    <img src="images/setting_icon.png" alt="Image" />
+  </button>
 
-  <div class="popup-result hidden" id="popup-result">
-    <h2>You are having</h2>
-    <h6 class="text-center current-points"></h6>
-    <br>
-    <table>
 
-    </table>
+  <div class="popup-setting hidden" id="popup-setting">
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -147,6 +165,7 @@ if (!isset($_SESSION['email'])) {
     function redirectLeaderBoard() {
       window.location.href = "leaderboard.html"
     }
+
   </script>
 
 </body>

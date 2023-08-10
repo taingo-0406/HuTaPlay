@@ -1,9 +1,9 @@
 $(document).ready(function () {
   var towers = [
-    [[], $(".line1")],
-    [[], $(".line2")],
-    [[], $(".line3")],
-  ],
+      [[], $(".line1")],
+      [[], $(".line2")],
+      [[], $(".line3")],
+    ],
     moves = 0,
     discs = null,
     current_stage = null,
@@ -22,10 +22,10 @@ $(document).ready(function () {
           towers[i][1].append(
             $(
               "<li id='disc" +
-              towers[i][0][j] +
-              "' value='" +
-              towers[i][0][j] +
-              "'></li>"
+                towers[i][0][j] +
+                "' value='" +
+                towers[i][0][j] +
+                "'></li>"
             )
           );
         }
@@ -67,13 +67,18 @@ $(document).ready(function () {
 
     // if (solved()) $(".moves").text("Solved with " + moves + " moves!");
     if (solved()) {
+      // Stop audio1
+      const audio1 = document.querySelector(".audio1");
+      audio1.pause();
+      audio1.currentTime = 0; // Reset playback position to the beginning
+
+      // Play audio2
+      const audio2 = document.querySelector(".audio2");
+      audio2.play();
       // console.log(moves);
       saveRecordToDatabase(moves, current_stage);
-      $(".audio1").pause();
-      $(".audio2").play();
       $(".totalmoves").text(moves + " moves!");
       $("#popup-result").removeClass("hidden");
-
     }
   }
 

@@ -107,10 +107,8 @@ span.circle {
   display: block;
 }
 
-.popup-result {
+.popup-setting {
   font-family: Lato;
-  width: 400px;
-  background: #fff;
   border-radius: 6px;
   position: absolute;
   top: 15%;
@@ -125,12 +123,6 @@ span.circle {
   visibility: hidden;
 }
 
-.popup-result h2 {
-  font-family: Lato;
-  font-size: 38px;
-  font-weight: 500;
-  margin: 30px 0 10px;
-}
 
 table {
   border-collapse: collapse;
@@ -157,8 +149,8 @@ tr:nth-child(even) {
   position: absolute;
   border: none;
   background: none;
-  bottom: 0;
-  left: 0;
+  bottom: 0%;
+  left: 0%;
 }
 
 .trophy_btn img {
@@ -168,7 +160,20 @@ tr:nth-child(even) {
 
 audio {
   position: fixed;
-  top: 0;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.setting_btn {
+  position: absolute;
+  border: none;
+  background: none;
+  bottom: 0%;
+  right: 0%;
+}
+
+.setting_btn img {
+  height: 60px;
+  width: 60px;
 }

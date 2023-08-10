@@ -49,6 +49,14 @@
     </br>
     </br>
 
+    <audio controls autoplay class="audio1">
+      <source src="sound/landing.mp3" type="audio/mpeg">
+    </audio>
+
+    <audio controls class="audio2">
+      <source src="sound/winsoundeffect.mp3" type="audio/mpeg">
+    </audio>
+
     <div class="popup-result hidden" id="popup-result">
       <h2>CONGRATULATION!</h2>
       <p>You have solved this level in <i class = "totalmoves"></i></p>

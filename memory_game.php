@@ -38,8 +38,11 @@
       <button class="bi bi-trophy-fill" onclick = "redirectLeaderBoard()"></button>
     </div>
 
-    <audio controls autoplay>
+    <audio controls autoplay class="audio1">
       <source src="sound/babyshark_memory.mp3" type="audio/mpeg">
+    </audio>
+    <audio controls class="audio2">
+      <source src="sound/winsoundeffect.mp3" type="audio/mpeg">
     </audio>
     <!-- Script -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
