@@ -5,9 +5,9 @@
         </div>
         <ul class="nav navbar-nav">
             <li><a href="manage_users.php">Manage Users</a></li>
-            <li><a href="manage_gifts.php">Manage Stages</a></li>
-            <li><a href="manage_giftcodes.php">Manage Gifts</a></li>
-            <li><a href="manage_stages.php">Manage Giftcodes</a></li>
+            <li><a href="manage_stages.php">Manage Stages</a></li>
+            <li><a href="manage_gifts.php">Manage Gifts</a></li>
+            <li><a href="manage_giftcodes.php">Manage Giftcodes</a></li>
             <li><a href="manage_memory_game.php">Manage Memory Game Images</a></li>
         </ul>
     </div>
