@@ -62,20 +62,26 @@ require 'admin_auth.php';
                 <form id="add-stage">
                     <div class="modal-header">
                         <h4 class="modal-title">Add Stage</h4>
+                        <br>
+                        <small>If ID is odd, Toh Discs input is disabled, else Memory Size input disabled</small>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label>Toh Discs Amount (if odd)</label>
-                            <input type="number" class="form-control" name="toh-discs" value=0>
+                            <label>ID</label>
+                            <input type="number" class="form-control" name="id" value="" disabled>
                         </div>
                         <div class="form-group">
-                            <label>Memory Size (if even)</label>
-                            <input type="number" class="form-control" name="memory-size" value=0>
+                            <label>Toh Discs Amount</label>
+                            <input type="number" class="form-control" name="toh-discs" value="0">
+                        </div>
+                        <div class="form-group">
+                            <label>Memory Size</label>
+                            <input type="number" class="form-control" name="memory-size" value="0">
                         </div>
                         <div class="form-group">
                             <label>Optimal Points</label>
-                            <input type="number" class="form-control" name="optimal-points" required>
+                            <input type="number" class="form-control" name="optimal-points" value="0" required>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -86,6 +92,7 @@ require 'admin_auth.php';
             </div>
         </div>
     </div>
+
 
     <!-- Edit Modal HTML -->
     <div id="editEmployeeModal" class="modal fade">

@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    let totalStages = 0;
+    let newId = 0;
+    const addTohDiscsInput = $('#addEmployeeModal input[name="toh-discs"]');
+    const addMemorySizeInput = $('#addEmployeeModal input[name="memory-size"]');
+
     // Activate tooltip
     $('[data-toggle="tooltip"]').tooltip();
     // define the function to get all stages' information
@@ -8,7 +13,10 @@ $(document).ready(function () {
             type: 'GET',
             dataType: 'json',
             success: function (stages) {
-                // initialize the DataTables plugin on the table
+                // Calculate the total number of stages
+                totalStages = stages.length;
+
+                // Initialize the DataTables plugin on the table
                 var table = $('.table').DataTable({
                     dom: 'Bfrtip',
                     lengthChange: false,
@@ -16,6 +24,19 @@ $(document).ready(function () {
                         {
                             text: 'Add new stage',
                             action: function () {
+                                // Calculate the new ID based on the total stages
+                                newId = totalStages + 1;
+
+                                // Set the new ID value in the modal input
+                                $('#addEmployeeModal input[name="id"]').val(newId);
+
+                                if (newId % 2 === 0) {
+                                    addTohDiscsInput.prop('disabled', true);
+                                    addMemorySizeInput.prop('disabled', false);
+                                } else {
+                                    addTohDiscsInput.prop('disabled', false);
+                                    addMemorySizeInput.prop('disabled', true);
+                                }
                                 $('#addEmployeeModal').modal('show');
                             }
                         }
@@ -40,6 +61,7 @@ $(document).ready(function () {
         });
     }
 
+
     function getStagesAfterEditing() {
         table = $('.table').DataTable();
         $.ajax({
@@ -53,6 +75,26 @@ $(document).ready(function () {
                 table.rows.add(stages);
                 // redraw the table
                 table.draw();
+
+                totalStages = stages.length;
+
+                // Calculate the new ID based on the total stages
+                newId = totalStages + 1;
+
+                addTohDiscsInput.val(0);
+                addMemorySizeInput.val(0);
+                $('#addEmployeeModal input[name="optimal-points"]').val(0);
+
+                // Set the new ID value in the modal input
+                $('#addEmployeeModal input[name="id"]').val(newId);
+
+                if (newId % 2 === 0) {
+                    addTohDiscsInput.prop('disabled', true);
+                    addMemorySizeInput.prop('disabled', false);
+                } else {
+                    addTohDiscsInput.prop('disabled', false);
+                    addMemorySizeInput.prop('disabled', true);
+                }
             }
         });
     }
