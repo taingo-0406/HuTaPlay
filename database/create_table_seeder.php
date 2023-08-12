@@ -83,6 +83,22 @@ foreach ($tables as $tableName => $createStatement) {
     }
 }
 
+// Users and admin data
+$usersData = [
+    ["User 1", "user1@users.com", password_hash("users1", PASSWORD_DEFAULT), 0, 1, "user"],
+    ["User 2", "user2@users.com", password_hash("users2", PASSWORD_DEFAULT), 0, 1, "user"],
+    ["User 3", "user3@users.com", password_hash("users3", PASSWORD_DEFAULT), 0, 1, "user"],
+    ["Admin", "admin@admin.com", password_hash("admin", PASSWORD_DEFAULT), 0, 1, "admin"]
+];
+
+// Insert users and admin data
+foreach ($usersData as $userData) {
+    $sql = "INSERT INTO users (full_name, email, password, points, current_stage, role, created_at) VALUES (?, ?, ?, ?, ?, ?, NOW())";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("sssiis", ...$userData);
+    $stmt->execute();
+}
+
 // Close connection
 $conn->close();
 
