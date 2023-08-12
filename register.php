@@ -111,69 +111,83 @@ if (isset($_SESSION['email'])) {
 			// Validate email format
 			if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 				echo "<script>alert('Please enter a valid email address.');</script>";
-			}
-			// Check if the email is already in use
-			else {
-				$sql = "SELECT * FROM users WHERE email = '$email'";
-				$result = $conn->query($sql);
+			} else {
+				// Check if the email is already in use using prepared statement
+				$sql = "SELECT * FROM users WHERE email = ?";
+				$stmt = $conn->prepare($sql);
+				$stmt->bind_param("s", $email);
+				$stmt->execute();
+				$result = $stmt->get_result();
 
 				if ($result->num_rows > 0) {
 					echo "<script>
-					Swal.fire({
-						title: 'Error!',
-						text: 'Your email has been used by another account.',
-						icon: 'error',
-						confirmButtonText: 'OK'
-					});
-					</script>";
-				}
-				// Validate password length
-				elseif (strlen($fullname) > 64) {
-					echo "<script>
-					Swal.fire({
-						title: 'Error!',
-						text: 'Name must be less than 64 characters.',
-						icon: 'error',
-						confirmButtonText: 'OK'
-					});
-					</script>";
-				} elseif (strlen($password) < 6) {
-					echo "<script>
-					Swal.fire({
-						title: 'Error!',
-						text: 'Password must be more than 6 characters.',
-						icon: 'error',
-						confirmButtonText: 'OK'
-					});
-					</script>";
-				} elseif (strlen($password) > 32) {
-					echo "<script>
-					Swal.fire({
-						title: 'Error!',
-						text: 'Password must be less than 32 characters.',
-						icon: 'error',
-						confirmButtonText: 'OK'
-					});
-					</script>";
-				}
-				// If all validation passes, proceed with registration
-				else {
-					// Insert the user into the database
-					$sql = "INSERT INTO users (email, full_name, password, points, current_stage, role) VALUES ('$email', '$fullname', '$hashedPassword', 0, 1, 'user')";
-
-					if ($conn->query($sql) === TRUE) {
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Your email has been used by another account.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    });
+                    </script>";
+				} else {
+					// Validate password length
+					if (strlen($fullname) > 64) {
 						echo "<script>
-						Swal.fire({
-							title: 'Success!',
-							text: 'Your account has been created.',
-							icon: 'success',
-							confirmButtonText: '<a href=\'login.php\'>OK</a>',
-						})
-						</script>";
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Name must be less than 64 characters.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                        </script>";
+					} elseif (strlen($password) < 6) {
+						echo "<script>
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Password must be more than 6 characters.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                        </script>";
+					} elseif (strlen($password) > 32) {
+						echo "<script>
+                        Swal.fire({
+                            title: 'Error!',
+                            text: 'Password must be less than 32 characters.',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        });
+                        </script>";
 					} else {
-						echo "<script>alert('Error');</script>";
+						// Insert the user into the database using prepared statement
+						$insertSql = "INSERT INTO users (email, full_name, password, points, current_stage, role) VALUES (?, ?, ?, 0, 1, 'user')";
+						$insertStmt = $conn->prepare($insertSql);
+						$insertStmt->bind_param("sss", $email, $fullname, $hashedPassword);
+
+						if ($insertStmt->execute()) {
+							echo "<script>
+							Swal.fire({
+								title: 'Success!',
+								text: 'Your account has been created.',
+								icon: 'success',
+								confirmButtonText: 'OK',
+								showConfirmButton: true,
+								allowOutsideClick: false, // Disable clicking outside the alert
+								allowEscapeKey: false, // Disable using the Esc key
+								allowEnterKey: true, // Enable using the Enter key to confirm
+							}).then((result) => {
+								if (result.isConfirmed) {
+									window.location.href = 'login.php'; // Redirect to login.php
+								}
+							});
+							</script>";
+						} else {
+							echo "<script>alert('Error');</script>";
+						}
 					}
 				}
+
+				// Close the prepared statement
+				$stmt->close();
 			}
 		}
 

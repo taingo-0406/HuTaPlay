@@ -47,6 +47,7 @@ require 'admin_auth.php';
                             <th>Gift name</th>
                             <th>Code</th>
                             <th>Exchanged</th>
+                            <th>Exchanged / Created at</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -61,7 +62,7 @@ require 'admin_auth.php';
             <div class="modal-content">
                 <form id="add-gift">
                     <div class="modal-header">
-                        <h4 class="modal-title">Add Gift</h4>
+                        <h4 class="modal-title">Add new giftcodes</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     </div>
                     <div class="modal-body">

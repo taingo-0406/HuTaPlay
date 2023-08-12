@@ -1,36 +1,56 @@
 <?php
 
-// set the content type to JSON
+// Set the content type to JSON
 header('Content-Type: application/json');
 
 require_once '../database.php';
 
-$result = $conn->query('SELECT gift_codes.id, gifts.name AS gift_name, gifts.id AS gift_id ,gift_codes.code, gift_codes.exchanged FROM gift_codes JOIN gifts ON gift_codes.gift_id = gifts.id');
+// Prepare and execute a SELECT statement using prepared statements
+$query = 'SELECT gift_codes.id, gifts.name AS gift_name, gifts.id AS gift_id, gift_codes.code, gift_codes.exchanged, gift_codes.timestamp as timestamp 
+          FROM gift_codes 
+          JOIN gifts ON gift_codes.gift_id = gifts.id 
+          LEFT JOIN exchange_codes_history ON gift_codes.code = exchange_codes_history.code_exchanged';
+$stmt = $conn->prepare($query);
 
-// create an array to hold the user objects
-$gifts = array();
+if ($stmt) {
+    // Execute the statement
+    $stmt->execute();
 
-// loop through the result set
-while ($row = $result->fetch_assoc()) {
-    // create a new user object
-    $gift = array(
-        'id' => $row['id'],
-        'gift_id' => $row['gift_id'],
-        'gift_name' => $row['gift_name'],
-        'code' => $row['code'],
-        'exchanged' => $row['exchanged'],
-    );
-    $gifts[] = $gift;
+    // Get the result set
+    $result = $stmt->get_result();
+
+    // Create an array to hold the gift objects
+    $gifts = array();
+
+    // Loop through the result set
+    while ($row = $result->fetch_assoc()) {
+        // Create a new gift object
+        $gift = array(
+            'id' => $row['id'],
+            'gift_id' => $row['gift_id'],
+            'gift_name' => $row['gift_name'],
+            'code' => $row['code'],
+            'exchanged' => $row['exchanged'],
+            'timestamp' => $row['timestamp']
+        );
+        $gifts[] = $gift;
+    }
+
+    if (count($gifts) == 0) {
+        http_response_code(400);
+        echo json_encode(array("error" => "No data found."));
+    }
+
+    echo json_encode($gifts);
+
+    // Close the statement
+    $stmt->close();
+} else {
+    http_response_code(500);
+    echo json_encode(array("error" => "Failed to prepare statement."));
 }
 
-if (count($gifts) == 0) {
-    http_response_code(400);
-    echo json_encode(array("error" => "No data found."));
-}
-
-echo json_encode($gifts);
-
-// close the database connection
+// Close the database connection
 $conn->close();
 
 ?>

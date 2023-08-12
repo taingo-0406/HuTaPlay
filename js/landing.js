@@ -99,9 +99,10 @@ $(document).ready(function () {
                                             checkPoints();
                                         },
                                         error: function (data) {
+                                            data = JSON.parse(data.responseText);
                                             swal.fire(
                                                 'Cancelled!',
-                                                data.responseText,
+                                                data.error,
                                                 'error'
                                             )
                                         },
@@ -128,6 +129,10 @@ $(document).ready(function () {
             type: 'GET',
             success: function (data) {
                 gifts = JSON.parse(data);
+                if (gifts.length === 0) {
+                    $('#code-exchanged').html('<tr><td colspan="4">No exchanged codes found.</td></tr>');
+                    return;
+                }
                 for (i = 0; i < gifts.length; i++) {
                     row = $('<tr></tr>');
                     row.append('<td>' + gifts[i].name + '</td>');
@@ -155,9 +160,13 @@ $(document).ready(function () {
                     row.append($('<td></td>').append(copyButton));
                     $('#code-exchanged').append(row);
                 }
+            },
+            error: function () {
+                $('#code-exchanged').html('<tr><td colspan="4">Error display codes or you did not exchange any yet.</td></tr>');
             }
         });
     }
+
     checkPoints();
     checkCurrentStage();
     checkAvailableGifts();

@@ -11,19 +11,32 @@ if (isset($_POST['id'])) {
     // Prepare and execute a DELETE statement
     $stmt = $conn->prepare("DELETE FROM memory_images WHERE id = ?");
     $stmt->bind_param('i', $id);
-    $stmt->execute();
 
-    // Close the database connection
-    $conn->close();
+    if ($stmt->execute()) {
+        // Close the statement
+        $stmt->close();
 
-    // Set the response code to 200 (OK)
-    http_response_code(200);
+        // Close the database connection
+        $conn->close();
 
-    // Set the Content-Type header to application/json
-    header('Content-Type: application/json');
+        // Set the response code to 200 (OK)
+        http_response_code(200);
 
-    // Output an empty JSON object
-    echo json_encode(new stdClass);
+        // Set the Content-Type header to application/json
+        header('Content-Type: application/json');
+
+        // Output an empty JSON object
+        echo json_encode(new stdClass);
+    } else {
+        // Set the response code to 500 (Internal Server Error)
+        http_response_code(500);
+
+        // Set the Content-Type header to application/json
+        header('Content-Type: application/json');
+
+        // Output an error message as a JSON object
+        echo json_encode(array("error" => "Failed to delete memory image."));
+    }
 } else {
     // Set the response code to 400 (Bad Request)
     http_response_code(400);

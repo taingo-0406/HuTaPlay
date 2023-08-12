@@ -1,18 +1,18 @@
 <?php
 
-// set the content type to JSON
+// Set the content type to JSON
 header('Content-Type: application/json');
 
 require_once '../database.php';
 
 $result = $conn->query('SELECT * FROM gifts');
 
-// create an array to hold the user objects
+// Create an array to hold the gift objects
 $gifts = array();
 
-// loop through the result set
+// Loop through the result set
 while ($row = $result->fetch_assoc()) {
-    // create a new user object
+    // Create a new gift object
     $gift = array(
         'id' => $row['id'],
         'name' => $row['name'],
@@ -29,7 +29,7 @@ if (count($gifts) == 0) {
 
 echo json_encode($gifts);
 
-// close the database connection
+// Close the database connection
 $conn->close();
 
 ?>

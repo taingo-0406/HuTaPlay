@@ -32,7 +32,7 @@ $(document).ready(function () {
                     lengthChange: false,
                     buttons: [
                         {
-                            text: 'Add new gift',
+                            text: 'Add new giftcodes',
                             action: function () {
                                 $('#addEmployeeModal').modal('show');
                             }
@@ -49,6 +49,7 @@ $(document).ready(function () {
                                 return data ? 'Yes' : 'No';
                             }
                         },
+                        { data: 'timestamp' },
                         {
                             data: null,
                             defaultContent:

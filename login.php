@@ -101,35 +101,50 @@ if (isset($_SESSION['email'])) {
 			$email = $_POST["email"];
 			$password = $_POST["password"];
 			$email = preg_replace('/\+[^@]*/', '', $email);
-			// Validate email and password combination
-			$sql = "SELECT * FROM users WHERE email = '$email'";
-			$result = $conn->query($sql);
-			$user = $result->fetch_assoc();
-			$hashed_password = $user['password'];
 
-			if (password_verify($password, $hashed_password)) {
-				// Login successful, create session
-				session_start();
-				$_SESSION['email'] = $email;
-				$_SESSION['user_id'] = $user['id'];
-				$_SESSION['fullname'] = $user['full_name'];
-				$_SESSION['current_stage'] = $user['current_stage'];
-				$_SESSION['role'] = $user['role'];
-				header("Location: landing.php");
+			// Validate email and password combination using prepared statement
+			$sql = "SELECT * FROM users WHERE email = ?";
+			$stmt = $conn->prepare($sql);
+			$stmt->bind_param("s", $email);
+			$stmt->execute();
+			$result = $stmt->get_result();
 
-				// Stop further execution of the script
-				exit;
-			} else {
-				// Email and password do not match
-				echo "<script>
-				Swal.fire({
-					title: 'Error!',
-					text: 'Your email and/or password is incorrect.',
-					icon: 'error',
-					confirmButtonText: 'OK'
-				});
-				</script>";
+			if ($result->num_rows == 1) {
+				$user = $result->fetch_assoc();
+				$hashed_password = $user['password'];
+
+				if (password_verify($password, $hashed_password)) {
+					// Login successful, create session only if session is not already set
+					if (!isset($_SESSION['email'])) {
+						$_SESSION['email'] = $email;
+						$_SESSION['user_id'] = $user['id'];
+						$_SESSION['fullname'] = $user['full_name'];
+						$_SESSION['current_stage'] = $user['current_stage'];
+						$_SESSION['role'] = $user['role'];
+					}
+
+					// Close the statement and the database connection
+					$stmt->close();
+					$conn->close();
+
+					// Redirect the user to landing.php
+					header("Location: landing.php");
+					exit; // Stop further execution
+				}
 			}
+
+			// Close the statement
+			$stmt->close();
+
+			// Email and password do not match
+			echo "<script>
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'Your email and/or password is incorrect.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            </script>";
 		}
 
 		// Close the database connection
