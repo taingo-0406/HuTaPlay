@@ -10,6 +10,13 @@
             <li><a href="manage_giftcodes.php">Manage Giftcodes</a></li>
             <li><a href="manage_memory_game.php">Manage Memory Game Images</a></li>
         </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li>
+                <form method="post">
+                    <input type="submit" name="logout" value="Logout">
+                </form>
+            </li>
+        </ul>
     </div>
 </nav>
 
@@ -29,3 +36,10 @@
         }
     }
 </script>
+
+<?php
+if (isset($_POST['logout'])) {
+    session_destroy();
+    header('Location: ../login.php');
+}
+?>
