@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (isset($_SESSION['email'])) {
-	header("Location: landing.php");
+	header("Location: index.php");
 	exit;
 }
 ?>
@@ -127,8 +127,8 @@ if (isset($_SESSION['email'])) {
 					$stmt->close();
 					$conn->close();
 
-					// Redirect the user to landing.php
-					header("Location: landing.php");
+					// Redirect the user to index.php
+					header("Location: index.php");
 					exit; // Stop further execution
 				}
 			}

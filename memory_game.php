@@ -53,7 +53,7 @@ if ($_SESSION['current_stage'] % 2 == 1) {
   <script src="js/memory_game.js"></script>
   <script>
     function redirectLandingPage() {
-      window.location.href = "landing.php"
+      window.location.href = "index.php"
     }
     function redirectRubicPage() {
       window.location.href = "ToH.php"

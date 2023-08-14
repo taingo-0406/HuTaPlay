@@ -88,7 +88,7 @@ if (!isset($_SESSION['email'])) {
               <tr>
                 <th>Gift</th>
                 <th>Cost (points)</th>
-                <th><a href="landing.php">Exchange</a></th>
+                <th><a href="index.php">Exchange</a></th>
               </tr>
             </table>
           </div>

@@ -29,7 +29,7 @@ $(document).ready(function () {
                     }
                 } else {
                     console.log("Error checking current stage.");
-                    window.location.href = "landing.php";
+                    window.location.href = "index.php";
                 }
             },
             error: function () {
