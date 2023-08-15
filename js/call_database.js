@@ -2,7 +2,7 @@ let memory_size = 0;
 
 function saveRecordToDatabase(moves, current_stage) {
     $.ajax({
-        url: "../hutaplay/database/save_play_record.php",
+        url: "database/save_play_record.php",
         method: "POST",
         data: {
             points: moves * 5,
@@ -19,7 +19,7 @@ function saveRecordToDatabase(moves, current_stage) {
 
 function checkCurrentStage() {
     $.ajax({
-        url: "../hutaplay/database/check_current_discs.php",
+        url: "database/check_current_discs.php",
         method: "POST",
         dataType: "json",
         success: function (response) {

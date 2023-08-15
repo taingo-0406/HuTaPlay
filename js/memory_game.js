@@ -15,7 +15,7 @@ $(document).ready(function () {
   function getMemoryImages() {
     return new Promise((resolve, reject) => {
       $.ajax({
-        url: '../hutaplay/database/admin/check_all_memory_images.php',
+        url: 'database/admin/check_all_memory_images.php',
         type: 'GET',
         dataType: 'json',
         success: function (data) {

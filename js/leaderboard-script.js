@@ -34,7 +34,7 @@ tabs.forEach(function (tab) {
 function renderLeaderboard(stage) {
 	// Send an AJAX request to the check_stage_leaderboard.php file
 	$.ajax({
-		url: `../hutaplay/database/check_stage_leaderboard.php?stage=${stage}`,
+		url: `database/check_stage_leaderboard.php?stage=${stage}`,
 		type: "GET",
 		dataType: "json",
 		success: function (data) {
@@ -55,7 +55,7 @@ function renderLeaderboard(stage) {
 
 function displayAllStages() {
 	$.ajax({
-		url: "../hutaplay/database/check_all_stages.php",
+		url: "database/check_all_stages.php",
 		type: "GET",
 		dataType: "json",
 		success: function (data) {

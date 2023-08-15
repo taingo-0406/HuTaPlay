@@ -12,7 +12,7 @@ $(document).ready(function () {
     }
     function checkCurrentStage() {
         $.ajax({
-            url: "../hutaplay/database/check_current_discs.php",
+            url: "database/check_current_discs.php",
             method: "POST",
             dataType: "json",
             success: function (response) {
@@ -39,7 +39,7 @@ $(document).ready(function () {
     }
     function checkAvailableGifts() {
         $.ajax({
-            url: '../hutaplay/database/check_available_gifts.php',
+            url: 'database/check_available_gifts.php',
             type: 'GET',
             success: function (data) {
                 gifts = JSON.parse(data);
@@ -62,7 +62,7 @@ $(document).ready(function () {
                             .then((result) => {
                                 if (result.isConfirmed) {
                                     $.ajax({
-                                        url: '../hutaplay/database/redeem_giftcode.php',
+                                        url: 'database/redeem_giftcode.php',
                                         type: 'POST',
                                         data: { gift: gift },
                                         success: function (data) {
@@ -125,7 +125,7 @@ $(document).ready(function () {
 
     function checkCodeExchanged() {
         $.ajax({
-            url: '../hutaplay/database/check_code_exchanged.php',
+            url: 'database/check_code_exchanged.php',
             type: 'GET',
             success: function (data) {
                 gifts = JSON.parse(data);

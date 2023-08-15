@@ -84,7 +84,7 @@ $(document).ready(function () {
 
   function checkCurrentStage() {
     $.ajax({
-      url: "../hutaplay/database/check_current_discs.php",
+      url: "database/check_current_discs.php",
       method: "POST",
       dataType: "json",
       success: function (response) {
