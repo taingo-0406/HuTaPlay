@@ -13,7 +13,7 @@ if (isset($_POST['email'], $_POST['name'], $_POST['points'], $_POST['stage'])) {
     $stmt = mysqli_prepare($conn, $query);
 
     // Bind parameters
-    mysqli_stmt_bind_param($stmt, "siii", $name, $points, $stage, $email);
+    mysqli_stmt_bind_param($stmt, "siis", $name, $points, $stage, $email);
 
     // Execute the statement
     if (mysqli_stmt_execute($stmt)) {
